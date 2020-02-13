@@ -1,0 +1,66 @@
+
+PS C:\TempLoc\test> git init
+Initialized empty Git repository in C:/TempLoc/test/.git/
+PS C:\TempLoc\test> git remote add origin https://github.com/appdevcount/testvs.git
+PS C:\TempLoc\test> git status
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        test.html
+
+PS C:\TempLoc\test> git add *
+PS C:\TempLoc\test> git commit -m "1st commit from local"
+[master (root-commit) 73f9bf9] 1st commit from local
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 test.html
+PS C:\TempLoc\test> git push origin master
+Logon failed, use ctrl+c to cancel basic credential prompt.
+PS C:\TempLoc\test>
+PS C:\TempLoc\test>
+PS C:\TempLoc\test> git push origin master
+Logon failed, use ctrl+c to cancel basic credential prompt.
+Username for 'https://github.com': appdevcount
+Password for 'https://appdevcount@github.com':
+remote: Invalid username or password.
+fatal: Authentication failed for 'https://github.com/appdevcount/testvs.git/'
+PS C:\TempLoc\test> git push origin master
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 224 bytes | 112.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+remote: This repository moved. Please use the new location:
+remote:   https://github.com/Appdevcount/testvs.git
+To https://github.com/appdevcount/testvs.git
+ * [new branch]      master -> master
+PS C:\TempLoc\test>
+PS C:\TempLoc\test> git status
+On branch master
+  (use "git add <file>..." to include in what will be committed)
+
+        .gitignore
+        n.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+PS C:\TempLoc\test> git add .
+PS C:\TempLoc\test> git commit -m "first commit"
+[master 3380cfb] first commit
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 .gitignore
+ create mode 100644 n.txt
+PS C:\TempLoc\test> git status
+On branch master
+nothing to commit, working tree clean
+PS C:\TempLoc\test> git push origin master
+Counting objects: 2, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 261 bytes | 130.00 KiB/s, done.
+Total 2 (delta 0), reused 0 (delta 0)
+remote: This repository moved. Please use the new location:
+remote:   https://github.com/Appdevcount/testvs.git
+To https://github.com/appdevcount/testvs.git
+   73f9bf9..3380cfb  master -> master
+   
