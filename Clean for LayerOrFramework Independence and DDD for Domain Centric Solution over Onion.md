@@ -1245,3 +1245,4 @@ public class PlaceOrder : IPlaceOrderUseCase
 - **Onion Architecture** treats each **use case as a first-class citizen**, often resulting in **one class per use case**, which aligns with **Command-Query Responsibility Segregation (CQRS)** principles.
 
 Would you like me to generate a **visual diagram** comparing both architectures or a **starter project template** in C# or another language?
+
