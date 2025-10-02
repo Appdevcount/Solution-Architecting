@@ -1,0 +1,572 @@
+2025-07-08T12:38:33.7616551Z ##[section]Starting: Build Docker image
+2025-07-08T12:38:33.7629449Z ==============================================================================
+2025-07-08T12:38:33.7629846Z Task         : Docker
+2025-07-08T12:38:33.7630066Z Description  : Build or push Docker images, login or logout, start or stop containers, or run a Docker command
+2025-07-08T12:38:33.7630464Z Version      : 2.256.1
+2025-07-08T12:38:33.7630692Z Author       : Microsoft Corporation
+2025-07-08T12:38:33.7630930Z Help         : https://aka.ms/azpipes-docker-tsg
+2025-07-08T12:38:33.7631193Z ==============================================================================
+2025-07-08T12:38:35.3835449Z [command]/opt/hostedtoolcache/docker-stable/28.0.3/x64/docker pull mcr.microsoft.com/dotnet/aspnet:8.0
+2025-07-08T12:38:54.0667971Z 8.0: Pulling from dotnet/aspnet
+2025-07-08T12:38:54.0682377Z 3da95a905ed5: Pulling fs layer
+2025-07-08T12:38:54.0682915Z 7d54cffa88c5: Pulling fs layer
+2025-07-08T12:38:54.0683423Z 1dc3c4065031: Pulling fs layer
+2025-07-08T12:38:54.0683829Z 3481fe6348af: Pulling fs layer
+2025-07-08T12:38:54.0684184Z 238631e73d74: Pulling fs layer
+2025-07-08T12:38:54.0684560Z 39d3508aeb33: Pulling fs layer
+2025-07-08T12:38:54.0684907Z 3481fe6348af: Waiting
+2025-07-08T12:38:54.0685225Z 238631e73d74: Waiting
+2025-07-08T12:38:54.0685550Z 39d3508aeb33: Waiting
+2025-07-08T12:38:54.0685918Z 1dc3c4065031: Verifying Checksum
+2025-07-08T12:38:54.0686252Z 1dc3c4065031: Download complete
+2025-07-08T12:38:54.0686606Z 3da95a905ed5: Verifying Checksum
+2025-07-08T12:38:54.0686943Z 3da95a905ed5: Download complete
+2025-07-08T12:38:54.0687304Z 238631e73d74: Verifying Checksum
+2025-07-08T12:38:54.0687665Z 238631e73d74: Download complete
+2025-07-08T12:38:54.0687998Z 7d54cffa88c5: Verifying Checksum
+2025-07-08T12:38:54.0688342Z 7d54cffa88c5: Download complete
+2025-07-08T12:38:54.0688676Z 3481fe6348af: Verifying Checksum
+2025-07-08T12:38:54.0689031Z 3481fe6348af: Download complete
+2025-07-08T12:38:54.0689416Z 39d3508aeb33: Verifying Checksum
+2025-07-08T12:38:54.0689767Z 39d3508aeb33: Download complete
+2025-07-08T12:38:54.0690101Z 3da95a905ed5: Pull complete
+2025-07-08T12:38:54.0690425Z 7d54cffa88c5: Pull complete
+2025-07-08T12:38:54.0690762Z 1dc3c4065031: Pull complete
+2025-07-08T12:38:54.0691088Z 3481fe6348af: Pull complete
+2025-07-08T12:38:54.0691429Z 238631e73d74: Pull complete
+2025-07-08T12:38:54.0691753Z 39d3508aeb33: Pull complete
+2025-07-08T12:38:54.0692170Z Digest: sha256:68669af44214899b4a5ff5fa0dd5fc10e7e9d665669a44dcbc1a142a99b2ec5b
+2025-07-08T12:38:54.0692743Z Status: Downloaded newer image for mcr.microsoft.com/dotnet/aspnet:8.0
+2025-07-08T12:38:54.0693361Z mcr.microsoft.com/dotnet/aspnet:8.0
+2025-07-08T12:38:54.0697399Z [command]/opt/hostedtoolcache/docker-stable/28.0.3/x64/docker inspect mcr.microsoft.com/dotnet/aspnet:8.0
+2025-07-08T12:38:54.0697785Z [
+2025-07-08T12:38:54.0698360Z     {
+2025-07-08T12:38:54.0699137Z         "Id": "sha256:c95aa8efc43aba91445ae15bd1758e9f4e08efe9ea1844003281f174b99dd072",
+2025-07-08T12:38:54.0699437Z         "RepoTags": [
+2025-07-08T12:38:54.0699695Z             "mcr.microsoft.com/dotnet/aspnet:8.0"
+2025-07-08T12:38:54.0699924Z         ],
+2025-07-08T12:38:54.0700149Z         "RepoDigests": [
+2025-07-08T12:38:54.0700596Z             "mcr.microsoft.com/dotnet/aspnet@sha256:68669af44214899b4a5ff5fa0dd5fc10e7e9d665669a44dcbc1a142a99b2ec5b"
+2025-07-08T12:38:54.0700910Z         ],
+2025-07-08T12:38:54.0701213Z         "Parent": "",
+2025-07-08T12:38:54.0701560Z         "Comment": "buildkit.dockerfile.v0",
+2025-07-08T12:38:54.0701943Z         "Created": "2025-07-01T04:28:42.814781952Z",
+2025-07-08T12:38:54.0702292Z         "DockerVersion": "",
+2025-07-08T12:38:54.0702616Z         "Author": "",
+2025-07-08T12:38:54.0702919Z         "Config": {
+2025-07-08T12:38:54.0703387Z             "Hostname": "",
+2025-07-08T12:38:54.0703708Z             "Domainname": "",
+2025-07-08T12:38:54.0704039Z             "User": "",
+2025-07-08T12:38:54.0704352Z             "AttachStdin": false,
+2025-07-08T12:38:54.0704669Z             "AttachStdout": false,
+2025-07-08T12:38:54.0705213Z             "AttachStderr": false,
+2025-07-08T12:38:54.0705535Z             "Tty": false,
+2025-07-08T12:38:54.0705864Z             "OpenStdin": false,
+2025-07-08T12:38:54.0706185Z             "StdinOnce": false,
+2025-07-08T12:38:54.0706500Z             "Env": [
+2025-07-08T12:38:54.0706846Z                 "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+2025-07-08T12:38:54.0707200Z                 "APP_UID=1654",
+2025-07-08T12:38:54.0707544Z                 "ASPNETCORE_HTTP_PORTS=8080",
+2025-07-08T12:38:54.0707888Z                 "DOTNET_RUNNING_IN_CONTAINER=true",
+2025-07-08T12:38:54.0708244Z                 "DOTNET_VERSION=8.0.17",
+2025-07-08T12:38:54.0708570Z                 "ASPNET_VERSION=8.0.17"
+2025-07-08T12:38:54.0708885Z             ],
+2025-07-08T12:38:54.0709182Z             "Cmd": [
+2025-07-08T12:38:54.0709485Z                 "bash"
+2025-07-08T12:38:54.0709784Z             ],
+2025-07-08T12:38:54.0710086Z             "Image": "",
+2025-07-08T12:38:54.0710406Z             "Volumes": null,
+2025-07-08T12:38:54.0710711Z             "WorkingDir": "",
+2025-07-08T12:38:54.0711037Z             "Entrypoint": null,
+2025-07-08T12:38:54.0711346Z             "OnBuild": null,
+2025-07-08T12:38:54.0711649Z             "Labels": null
+2025-07-08T12:38:54.0711962Z         },
+2025-07-08T12:38:54.0712265Z         "Architecture": "amd64",
+2025-07-08T12:38:54.0712584Z         "Os": "linux",
+2025-07-08T12:38:54.0712895Z         "Size": 217514401,
+2025-07-08T12:38:54.0713343Z         "GraphDriver": {
+2025-07-08T12:38:54.0713657Z             "Data": {
+2025-07-08T12:38:54.0714362Z                 "LowerDir": "/var/lib/docker/overlay2/8067a8486025f72bc36b3239b7f3813e8496ad0d12b4a6a44d070479410d4d16/diff:/var/lib/docker/overlay2/bf36ab69544f1ace2a0b05c480570e5804050fc7cfad85603e3df1f656cdac12/diff:/var/lib/docker/overlay2/c379d3f160165394a482ddac4e9a1d9010262a3b535d27ea091395c891e18bff/diff:/var/lib/docker/overlay2/f74eb5df425c0985c7a1f948e68fcb20c6029ad5655b27d19e2c65d1fcea9872/diff:/var/lib/docker/overlay2/fdd992dd4cc0dc1353e824bb31d225f15b7c8d5a5a13ce40fb0fcffb050dbfa1/diff",
+2025-07-08T12:38:54.0715170Z                 "MergedDir": "/var/lib/docker/overlay2/e34693ef6649055fa68aab2c824331d0f2e683e71ef10aa3b91a742ac958cb85/merged",
+2025-07-08T12:38:54.0715656Z                 "UpperDir": "/var/lib/docker/overlay2/e34693ef6649055fa68aab2c824331d0f2e683e71ef10aa3b91a742ac958cb85/diff",
+2025-07-08T12:38:54.0716121Z                 "WorkDir": "/var/lib/docker/overlay2/e34693ef6649055fa68aab2c824331d0f2e683e71ef10aa3b91a742ac958cb85/work"
+2025-07-08T12:38:54.0716507Z             },
+2025-07-08T12:38:54.0716807Z             "Name": "overlay2"
+2025-07-08T12:38:54.0717122Z         },
+2025-07-08T12:38:54.0717418Z         "RootFS": {
+2025-07-08T12:38:54.0717736Z             "Type": "layers",
+2025-07-08T12:38:54.0718049Z             "Layers": [
+2025-07-08T12:38:54.0718566Z                 "sha256:1bb35e8b4de116e84b2ccf614cce4e309b6043bf2cd35543d8394edeaeb587e3",
+2025-07-08T12:38:54.0719031Z                 "sha256:d2e8a9c6d88bf01d4d3f40ba74dee643353d6a31cd1ab2cad1103bef0de5b732",
+2025-07-08T12:38:54.0719486Z                 "sha256:1879dd6abb55aec0411f496133ded80480f6b7a180b3308836f46e96b0e05f6f",
+2025-07-08T12:38:54.0719941Z                 "sha256:f412107b098b031bb81185b3bb2febd14759281244eb2005ef959a13a57c0881",
+2025-07-08T12:38:54.0720382Z                 "sha256:f1597c4973296d38b1b4deae8c7fe84edb1e1ae72e656ca72803fb0a656041ba",
+2025-07-08T12:38:54.0720846Z                 "sha256:fcec66525012ce4b6221c3007eece8b36016fbe09b473426975cd5f752ac3f7d"
+2025-07-08T12:38:54.0721203Z             ]
+2025-07-08T12:38:54.0721544Z         },
+2025-07-08T12:38:54.0721848Z         "Metadata": {
+2025-07-08T12:38:54.0722208Z             "LastTagTime": "0001-01-01T00:00:00Z"
+2025-07-08T12:38:54.0722532Z         }
+2025-07-08T12:38:54.0722893Z     }
+2025-07-08T12:38:54.0723155Z ]
+2025-07-08T12:38:54.0749674Z [command]/opt/hostedtoolcache/docker-stable/28.0.3/x64/docker build -f /agent/_work/1/s/CareCoordinationClientAPI/src/CareCoordinationClientAPI/Dockerfile --label com.azure.dev.image.system.teamfoundationcollectionuri=https://dev.azure.com/eviCoreDev/ --label com.azure.dev.image.system.teamproject=ImageOneDomainApps --label com.azure.dev.image.build.repository.name=CareCoordinationClientAPI --label com.azure.dev.image.build.sourceversion=f0c59db82e091935c0d8ac814bde56b4303018ea --label com.azure.dev.image.build.repository.uri=https://eviCoreDev@dev.azure.com/eviCoreDev/ImageOneDomainApps/_git/CareCoordinationClientAPI --label com.azure.dev.image.build.sourcebranchname=merge --label com.azure.dev.image.build.definitionname=CareCoordinationClientAPI_develop --label com.azure.dev.image.build.buildnumber=25.7.8.21 --label com.azure.dev.image.build.builduri=vstfs:///Build/Build/848728 --label image.base.ref.name=mcr.microsoft.com/dotnet/aspnet:8.0 --label image.base.digest=sha256:68669af44214899b4a5ff5fa0dd5fc10e7e9d665669a44dcbc1a142a99b2ec5b --build-arg PAT=BhFgFktP4piwhXEQsftOYkRHnbwHrFXU0lkSql3EsX1gJ7G6avOgJQQJ99BFACAAAAAkkYojAAASAZDO2hun -t ***/carecoordinationclientapi:CareCoordinationClientAPI_develop-25.7.8.21 /agent/_work/1/s/CareCoordinationClientAPI
+2025-07-08T12:38:56.1583681Z #0 building with "default" instance using docker driver
+2025-07-08T12:38:56.1584620Z 
+2025-07-08T12:38:56.1584911Z #1 [internal] load build definition from Dockerfile
+2025-07-08T12:38:56.1585183Z #1 transferring dockerfile: 2.00kB done
+2025-07-08T12:38:56.1585471Z #1 DONE 0.1s
+2025-07-08T12:38:56.1585540Z 
+2025-07-08T12:38:56.1585895Z #2 [internal] load metadata for mcr.microsoft.com/dotnet/aspnet:8.0
+2025-07-08T12:38:56.1586101Z #2 DONE 0.0s
+2025-07-08T12:38:56.3087118Z 
+2025-07-08T12:38:57.0689689Z #3 [internal] load metadata for mcr.microsoft.com/dotnet/sdk:8.0
+2025-07-08T12:38:58.0697081Z #3 DONE 0.5s
+2025-07-08T12:38:58.0702183Z 
+2025-07-08T12:38:58.0702772Z #4 [internal] load .dockerignore
+2025-07-08T12:38:58.0703103Z #4 transferring context: 2B done
+2025-07-08T12:38:58.0703690Z #4 DONE 0.0s
+2025-07-08T12:38:58.0703773Z 
+2025-07-08T12:38:58.0704034Z #5 [internal] load build context
+2025-07-08T12:38:58.0704348Z #5 DONE 0.0s
+2025-07-08T12:38:58.0704426Z 
+2025-07-08T12:38:58.0704923Z #6 [build  1/19] FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:57c3bf930db9ac075c9019b83fdfc77c474b11b874120b84bc97fa65f33662dd
+2025-07-08T12:38:58.0705396Z #6 resolve mcr.microsoft.com/dotnet/sdk:8.0@sha256:57c3bf930db9ac075c9019b83fdfc77c474b11b874120b84bc97fa65f33662dd 0.1s done
+2025-07-08T12:38:58.0705816Z #6 sha256:57c3bf930db9ac075c9019b83fdfc77c474b11b874120b84bc97fa65f33662dd 1.08kB / 1.08kB done
+2025-07-08T12:38:58.0706314Z #6 sha256:7d5420626856cd2b6eb45d6cdd16c7bcda1bd2c65485ea8bcc12e8f3b6eaf122 5.07kB / 5.07kB done
+2025-07-08T12:38:58.0706699Z #6 sha256:f5aa562667c5fd52b35b9d0ee9a53297de2910ca88fdddf736ee5ce652f95bbc 2.42kB / 2.42kB done
+2025-07-08T12:38:58.0707117Z #6 sha256:191fa15376b6b6227782343abc495cf27228afc96131c5a42bf6d439dd45b922 0B / 30.88MB 0.2s
+2025-07-08T12:38:58.0707698Z #6 ...
+2025-07-08T12:38:58.0707847Z 
+2025-07-08T12:38:58.0708092Z #5 [internal] load build context
+2025-07-08T12:38:58.0708385Z #5 transferring context: 205.73kB 0.0s done
+2025-07-08T12:38:58.0708712Z #5 DONE 0.3s
+2025-07-08T12:38:58.0708789Z 
+2025-07-08T12:38:58.0709163Z #6 [build  1/19] FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:57c3bf930db9ac075c9019b83fdfc77c474b11b874120b84bc97fa65f33662dd
+2025-07-08T12:38:58.0709691Z #6 sha256:0cf2b2928e255e29785a750bceb738b9411bb2d661ebd7bf8221318f85a743e9 0B / 177.34MB 0.3s
+2025-07-08T12:38:58.0710100Z #6 sha256:50abf68715cfd3019251404ff033be6e8858ed6ec055041c3234274c649c7a5e 0B / 2.63kB 0.3s
+2025-07-08T12:38:58.0710460Z #6 ...
+2025-07-08T12:38:58.0710533Z 
+2025-07-08T12:38:58.0710806Z #7 [base 1/2] FROM mcr.microsoft.com/dotnet/aspnet:8.0
+2025-07-08T12:38:58.0711140Z #7 DONE 0.5s
+2025-07-08T12:38:58.0711217Z 
+2025-07-08T12:38:58.0711646Z #6 [build  1/19] FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:57c3bf930db9ac075c9019b83fdfc77c474b11b874120b84bc97fa65f33662dd
+2025-07-08T12:38:58.0712092Z #6 sha256:50abf68715cfd3019251404ff033be6e8858ed6ec055041c3234274c649c7a5e 2.63kB / 2.63kB 0.4s done
+2025-07-08T12:38:58.0712644Z #6 sha256:191fa15376b6b6227782343abc495cf27228afc96131c5a42bf6d439dd45b922 4.19MB / 30.88MB 0.6s
+2025-07-08T12:38:58.0713176Z #6 sha256:0cf2b2928e255e29785a750bceb738b9411bb2d661ebd7bf8221318f85a743e9 13.63MB / 177.34MB 0.6s
+2025-07-08T12:38:58.0713700Z #6 sha256:73bbe5e7c9fece7f98047acb2ad1e620c006115f013908cc65fde33fe4975a98 2.10MB / 16.97MB 0.6s
+2025-07-08T12:38:58.0714034Z #6 ...
+2025-07-08T12:38:58.0714103Z 
+2025-07-08T12:38:58.0714478Z #8 [base 2/2] WORKDIR /app
+2025-07-08T12:38:58.0714732Z #8 DONE 0.3s
+2025-07-08T12:38:58.0714810Z 
+2025-07-08T12:38:58.0715203Z #6 [build  1/19] FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:57c3bf930db9ac075c9019b83fdfc77c474b11b874120b84bc97fa65f33662dd
+2025-07-08T12:38:58.0715619Z #6 sha256:191fa15376b6b6227782343abc495cf27228afc96131c5a42bf6d439dd45b922 6.29MB / 30.88MB 0.9s
+2025-07-08T12:38:58.0716049Z #6 sha256:0cf2b2928e255e29785a750bceb738b9411bb2d661ebd7bf8221318f85a743e9 31.46MB / 177.34MB 0.9s
+2025-07-08T12:38:58.0716488Z #6 sha256:73bbe5e7c9fece7f98047acb2ad1e620c006115f013908cc65fde33fe4975a98 16.97MB / 16.97MB 0.9s
+2025-07-08T12:38:58.2730884Z #6 ...
+2025-07-08T12:38:58.2731655Z 
+2025-07-08T12:38:58.2732067Z #9 [final 1/2] WORKDIR /app
+2025-07-08T12:38:58.2732447Z #9 DONE 0.6s
+2025-07-08T12:38:58.2732593Z 
+2025-07-08T12:38:58.2732988Z #6 [build  1/19] FROM mcr.microsoft.com/dotnet/sdk:8.0@sha256:57c3bf930db9ac075c9019b83fdfc77c474b11b874120b84bc97fa65f33662dd
+2025-07-08T12:38:58.2733774Z #6 sha256:191fa15376b6b6227782343abc495cf27228afc96131c5a42bf6d439dd45b922 8.39MB / 30.88MB 1.5s
+2025-07-08T12:38:58.2734282Z #6 sha256:0cf2b2928e255e29785a750bceb738b9411bb2d661ebd7bf8221318f85a743e9 50.33MB / 177.34MB 1.5s
+2025-07-08T12:38:58.2734699Z #6 sha256:73bbe5e7c9fece7f98047acb2ad1e620c006115f013908cc65fde33fe4975a98 16.97MB / 16.97MB 1.3s done
+2025-07-08T12:38:58.4735254Z #6 sha256:191fa15376b6b6227782343abc495cf27228afc96131c5a42bf6d439dd45b922 11.53MB / 30.88MB 1.7s
+2025-07-08T12:38:58.4736304Z #6 sha256:0cf2b2928e255e29785a750bceb738b9411bb2d661ebd7bf8221318f85a743e9 66.06MB / 177.34MB 1.7s
+2025-07-08T12:38:58.5755554Z #6 sha256:191fa15376b6b6227782343abc495cf27228afc96131c5a42bf6d439dd45b922 16.78MB / 30.88MB 1.8s
+2025-07-08T12:38:58.7768005Z #6 sha256:191fa15376b6b6227782343abc495cf27228afc96131c5a42bf6d439dd45b922 20.97MB / 30.88MB 2.0s
+2025-07-08T12:38:58.7768464Z #6 sha256:0cf2b2928e255e29785a750bceb738b9411bb2d661ebd7bf8221318f85a743e9 88.08MB / 177.34MB 2.0s
+2025-07-08T12:38:58.9736075Z #6 sha256:191fa15376b6b6227782343abc495cf27228afc96131c5a42bf6d439dd45b922 24.12MB / 30.88MB 2.2s
+2025-07-08T12:38:58.9737329Z #6 sha256:0cf2b2928e255e29785a750bceb738b9411bb2d661ebd7bf8221318f85a743e9 101.71MB / 177.34MB 2.2s
+2025-07-08T12:38:59.1728202Z #6 sha256:191fa15376b6b6227782343abc495cf27228afc96131c5a42bf6d439dd45b922 28.31MB / 30.88MB 2.4s
+2025-07-08T12:38:59.1729926Z #6 sha256:0cf2b2928e255e29785a750bceb738b9411bb2d661ebd7bf8221318f85a743e9 117.44MB / 177.34MB 2.4s
+2025-07-08T12:38:59.2731624Z #6 sha256:191fa15376b6b6227782343abc495cf27228afc96131c5a42bf6d439dd45b922 30.88MB / 30.88MB 2.5s
+2025-07-08T12:38:59.4726342Z #6 sha256:191fa15376b6b6227782343abc495cf27228afc96131c5a42bf6d439dd45b922 30.88MB / 30.88MB 2.6s done
+2025-07-08T12:38:59.4728284Z #6 sha256:0cf2b2928e255e29785a750bceb738b9411bb2d661ebd7bf8221318f85a743e9 141.56MB / 177.34MB 2.7s
+2025-07-08T12:38:59.5737668Z #6 extracting sha256:191fa15376b6b6227782343abc495cf27228afc96131c5a42bf6d439dd45b922
+2025-07-08T12:38:59.6729919Z #6 sha256:0cf2b2928e255e29785a750bceb738b9411bb2d661ebd7bf8221318f85a743e9 157.29MB / 177.34MB 2.9s
+2025-07-08T12:39:00.5702004Z #6 sha256:0cf2b2928e255e29785a750bceb738b9411bb2d661ebd7bf8221318f85a743e9 171.97MB / 177.34MB 3.1s
+2025-07-08T12:39:02.3874378Z #6 sha256:0cf2b2928e255e29785a750bceb738b9411bb2d661ebd7bf8221318f85a743e9 177.34MB / 177.34MB 5.6s done
+2025-07-08T12:39:03.0138503Z #6 extracting sha256:191fa15376b6b6227782343abc495cf27228afc96131c5a42bf6d439dd45b922 3.4s done
+2025-07-08T12:39:04.4321961Z #6 extracting sha256:0cf2b2928e255e29785a750bceb738b9411bb2d661ebd7bf8221318f85a743e9
+2025-07-08T12:39:09.5730852Z #6 extracting sha256:0cf2b2928e255e29785a750bceb738b9411bb2d661ebd7bf8221318f85a743e9 4.3s done
+2025-07-08T12:39:17.7624007Z #6 extracting sha256:50abf68715cfd3019251404ff033be6e8858ed6ec055041c3234274c649c7a5e
+2025-07-08T12:39:17.9623420Z #6 extracting sha256:50abf68715cfd3019251404ff033be6e8858ed6ec055041c3234274c649c7a5e done
+2025-07-08T12:39:17.9623917Z #6 extracting sha256:73bbe5e7c9fece7f98047acb2ad1e620c006115f013908cc65fde33fe4975a98 0.1s
+2025-07-08T12:39:18.4902929Z #6 extracting sha256:73bbe5e7c9fece7f98047acb2ad1e620c006115f013908cc65fde33fe4975a98 0.5s done
+2025-07-08T12:39:19.3527735Z #6 DONE 22.7s
+2025-07-08T12:39:19.4711669Z 
+2025-07-08T12:39:19.4712441Z #10 [build  2/19] WORKDIR /src
+2025-07-08T12:39:19.4712769Z #10 DONE 0.1s
+2025-07-08T12:39:19.6052819Z 
+2025-07-08T12:39:19.6053640Z #11 [build  3/19] COPY [src/CareCoordinationClientAPI/CareCoordinationClientAPI.csproj, ./src/CareCoordinationClientAPI/]
+2025-07-08T12:39:19.6053940Z #11 DONE 0.1s
+2025-07-08T12:39:19.7427411Z 
+2025-07-08T12:39:19.7428281Z #12 [build  4/19] COPY [src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj, ./src/CareCoordinationClientAPI.Application/]
+2025-07-08T12:39:19.7428640Z #12 DONE 0.1s
+2025-07-08T12:39:19.8773012Z 
+2025-07-08T12:39:19.8774152Z #13 [build  5/19] COPY [src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj, ./src/CareCoordinationClientAPI.Domain/]
+2025-07-08T12:39:20.5756550Z #13 DONE 0.1s
+2025-07-08T12:39:20.5763683Z 
+2025-07-08T12:39:20.5774245Z #14 [build  6/19] COPY [src/CareCoordinationClientAPI/NuGet.Config, ./src/CareCoordinationClientAPI/]
+2025-07-08T12:39:20.5774690Z #14 DONE 0.1s
+2025-07-08T12:39:20.5774841Z 
+2025-07-08T12:39:20.5775192Z #15 [build  7/19] RUN ls -F
+2025-07-08T12:39:20.5775475Z #15 0.303 src/
+2025-07-08T12:39:20.5775744Z #15 DONE 0.3s
+2025-07-08T12:39:20.5775880Z 
+2025-07-08T12:39:20.5776182Z #16 [build  8/19] RUN ls -F src/CareCoordinationClientAPI/
+2025-07-08T12:39:20.6412199Z #16 0.266 CareCoordinationClientAPI.csproj
+2025-07-08T12:39:21.5762756Z #16 0.266 NuGet.Config
+2025-07-08T12:39:21.5767019Z #16 DONE 0.3s
+2025-07-08T12:39:21.5767152Z 
+2025-07-08T12:39:21.5767451Z #17 [build  9/19] RUN ls -F src/CareCoordinationClientAPI.Application/
+2025-07-08T12:39:21.5784218Z #17 0.283 CareCoordinationClientAPI.Application.csproj
+2025-07-08T12:39:21.5785454Z #17 DONE 0.3s
+2025-07-08T12:39:21.5785533Z 
+2025-07-08T12:39:21.5785742Z #18 [build 10/19] RUN ls -F src/CareCoordinationClientAPI.Domain/
+2025-07-08T12:39:21.5786004Z #18 0.255 CareCoordinationClientAPI.Domain.csproj
+2025-07-08T12:39:21.5786208Z #18 DONE 0.3s
+2025-07-08T12:39:21.5786290Z 
+2025-07-08T12:39:21.5786569Z #19 [build 11/19] RUN dotnet restore "src/CareCoordinationClientAPI/CareCoordinationClientAPI.csproj" --configfile "src/CareCoordinationClientAPI/NuGet.Config"
+2025-07-08T12:39:22.3709461Z #19 1.014   Determining projects to restore...
+2025-07-08T12:39:37.5898959Z #19 16.23   Restored /src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj (in 14.18 sec).
+2025-07-08T12:39:37.7554327Z #19 16.24   Restored /src/src/CareCoordinationClientAPI/CareCoordinationClientAPI.csproj (in 14.18 sec).
+2025-07-08T12:39:37.7556047Z #19 16.25   Restored /src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj (in 2 ms).
+2025-07-08T12:39:40.9223023Z #19 DONE 19.6s
+2025-07-08T12:39:41.0841666Z 
+2025-07-08T12:39:41.0842880Z #20 [build 12/19] RUN dotnet restore "src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj" --configfile "src/CareCoordinationClientAPI/NuGet.Config"
+2025-07-08T12:39:41.9554703Z #20 1.022   Determining projects to restore...
+2025-07-08T12:39:42.4555495Z #20 1.521   All projects are up-to-date for restore.
+2025-07-08T12:39:42.5679195Z #20 DONE 1.6s
+2025-07-08T12:39:42.5680227Z 
+2025-07-08T12:39:42.5680540Z #21 [build 13/19] RUN dotnet restore "src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj" --configfile "src/CareCoordinationClientAPI/NuGet.Config"
+2025-07-08T12:39:43.5404785Z #21 0.975   Determining projects to restore...
+2025-07-08T12:39:43.9746344Z #21 1.409   All projects are up-to-date for restore.
+2025-07-08T12:39:44.0771747Z #21 DONE 1.5s
+2025-07-08T12:39:44.2320981Z 
+2025-07-08T12:39:44.2322222Z #22 [build 14/19] COPY . .
+2025-07-08T12:39:44.2948876Z #22 DONE 0.2s
+2025-07-08T12:39:44.4510790Z 
+2025-07-08T12:39:44.4512053Z #23 [build 15/19] RUN ls -F
+2025-07-08T12:39:44.5431550Z #23 0.242 README.md
+2025-07-08T12:39:44.5432884Z #23 0.242 deployment/
+2025-07-08T12:39:44.5434478Z #23 0.242 src/
+2025-07-08T12:39:44.7459643Z #23 DONE 0.3s
+2025-07-08T12:39:44.7461995Z 
+2025-07-08T12:39:44.7462217Z #24 [build 16/19] RUN ls -F src/
+2025-07-08T12:39:44.8871851Z #24 0.292 CareCoordinationClientAPI/
+2025-07-08T12:39:44.8872184Z #24 0.292 CareCoordinationClientAPI.Application/
+2025-07-08T12:39:44.8872430Z #24 0.292 CareCoordinationClientAPI.Domain/
+2025-07-08T12:39:44.8872665Z #24 0.292 CareCoordinationClientAPI.Test/
+2025-07-08T12:39:44.8872879Z #24 0.292 CareCoordinationClientAPI.sln
+2025-07-08T12:39:45.0881508Z #24 DONE 0.4s
+2025-07-08T12:39:45.0881884Z 
+2025-07-08T12:39:45.0882227Z #25 [build 17/19] WORKDIR /src/src/CareCoordinationClientAPI
+2025-07-08T12:39:45.0883051Z #25 DONE 0.1s
+2025-07-08T12:39:45.2439279Z 
+2025-07-08T12:39:45.2440624Z #26 [build 18/19] RUN ls -F
+2025-07-08T12:39:45.3620838Z #26 0.268 CareCoordinationClientAPI.csproj
+2025-07-08T12:39:45.3624695Z #26 0.268 CareCoordinationClientAPI.csproj.user
+2025-07-08T12:39:45.3625606Z #26 0.268 CareCoordinationClientAPI.http
+2025-07-08T12:39:45.3625882Z #26 0.268 CareCoordinationClientAPI.sln
+2025-07-08T12:39:45.3626156Z #26 0.268 Controllers/
+2025-07-08T12:39:45.3626352Z #26 0.268 Dockerfile
+2025-07-08T12:39:45.3626558Z #26 0.268 NuGet.Config
+2025-07-08T12:39:45.3626778Z #26 0.268 Program.cs
+2025-07-08T12:39:45.3626966Z #26 0.268 Properties/
+2025-07-08T12:39:45.3627166Z #26 0.268 Validators/
+2025-07-08T12:39:45.3627377Z #26 0.268 appsettings.Development.json
+2025-07-08T12:39:45.3627579Z #26 0.268 appsettings.json
+2025-07-08T12:39:45.3627777Z #26 0.268 obj/
+2025-07-08T12:39:45.5616177Z #26 DONE 0.3s
+2025-07-08T12:39:45.5616797Z 
+2025-07-08T12:39:45.5617333Z #27 [build 19/19] RUN dotnet build "CareCoordinationClientAPI.csproj" -c Release -o /app/build
+2025-07-08T12:39:46.5014658Z #27 1.090   Determining projects to restore...
+2025-07-08T12:39:48.0985911Z #27 2.687   Restored /src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj (in 484 ms).
+2025-07-08T12:39:48.2752166Z #27 2.690   Restored /src/src/CareCoordinationClientAPI/CareCoordinationClientAPI.csproj (in 484 ms).
+2025-07-08T12:39:48.2752850Z #27 2.713   Restored /src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj (in 3 ms).
+2025-07-08T12:39:51.0554787Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/StatusDetails.cs(12,23): warning CS8618: Non-nullable property 'Notes' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0555766Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ServiceTypeDTO.cs(13,23): warning CS8618: Non-nullable property 'ServiceTypeCode' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0556536Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ServiceTypeDTO.cs(19,23): warning CS8618: Non-nullable property 'ServiceType' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0557615Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/RequesterDetails.cs(10,23): warning CS8618: Non-nullable property 'FirstName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0558400Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/RequesterDetails.cs(12,23): warning CS8618: Non-nullable property 'LastName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0559454Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/RequesterDetails.cs(14,23): warning CS8618: Non-nullable property 'PhoneNumber' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0560400Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/RequesterDetails.cs(16,23): warning CS8618: Non-nullable property 'Extension' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0561969Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/RequesterDetails.cs(19,23): warning CS8618: Non-nullable property 'Fax' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0562733Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/RequesterDetails.cs(21,23): warning CS8618: Non-nullable property 'Email' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0565759Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/RequesterDetails.cs(23,23): warning CS8618: Non-nullable property 'Facility' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0566535Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/RequestedServicesDto.cs(10,23): warning CS8618: Non-nullable property 'Program' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0567441Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/RequestedServicesDto.cs(13,23): warning CS8618: Non-nullable property 'ServicePlaceCode' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0568231Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/RequestedServicesDto.cs(16,23): warning CS8618: Non-nullable property 'ServicePlace' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0568907Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/RequestedServicesDto.cs(19,23): warning CS8618: Non-nullable property 'ServicePlaceFullName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0569646Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/RequestedServicesDto.cs(22,37): warning CS8618: Non-nullable property 'ServiceTypes' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0570310Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ReasonDetails.cs(10,23): warning CS8618: Non-nullable property 'Reason' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0570964Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ReasonDetails.cs(12,23): warning CS8618: Non-nullable property 'Notes' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0571598Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(9,23): warning CS8618: Non-nullable property 'Fax' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0572253Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(11,23): warning CS8618: Non-nullable property 'PhoneExtension' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0572899Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(13,23): warning CS8618: Non-nullable property 'Phone' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0573623Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(15,23): warning CS8618: Non-nullable property 'Zip' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0574269Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(17,23): warning CS8618: Non-nullable property 'StateCode' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0574990Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(19,23): warning CS8618: Non-nullable property 'County' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0575645Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(21,23): warning CS8618: Non-nullable property 'City' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0576292Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(23,23): warning CS8618: Non-nullable property 'Address2' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0576997Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(25,23): warning CS8618: Non-nullable property 'Address1' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0577631Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(29,23): warning CS8618: Non-nullable property 'TIN' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0578280Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(31,23): warning CS8618: Non-nullable property 'NPI' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0578944Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(33,23): warning CS8618: Non-nullable property 'LastName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0579589Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(35,23): warning CS8618: Non-nullable property 'FirstName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0580258Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(37,23): warning CS8618: Non-nullable property 'OrganizationName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0580924Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(44,23): warning CS8618: Non-nullable property 'ProviderTypeIdentifier' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0581643Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(56,23): warning CS8618: Non-nullable property 'ProviderNetworkType' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0582322Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(58,23): warning CS8618: Non-nullable property 'QuickCreateSource' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0582978Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(60,23): warning CS8618: Non-nullable property 'SourceNotes' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0587641Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProcedureCode.cs(10,23): warning CS8618: Non-nullable property 'Name' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0588316Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProcedureCode.cs(12,23): warning CS8618: Non-nullable property 'SimplifiedDescription' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0588979Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/ProcedureCode.cs(14,23): warning CS8618: Non-nullable property 'Units' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0589641Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(27,23): warning CS8618: Non-nullable property 'MemberId' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0590289Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(33,23): warning CS8618: Non-nullable property 'Gender' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0590945Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(38,23): warning CS8618: Non-nullable property 'FirstName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0591590Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(44,23): warning CS8618: Non-nullable property 'MiddleName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0592257Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(50,23): warning CS8618: Non-nullable property 'LastName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0592999Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(64,23): warning CS8618: Non-nullable property 'AddressLine1' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0593754Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(70,23): warning CS8618: Non-nullable property 'AddressLine2' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0594416Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(75,23): warning CS8618: Non-nullable property 'City' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0595120Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(81,23): warning CS8618: Non-nullable property 'County' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0595775Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(87,23): warning CS8618: Non-nullable property 'StateCode' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0596426Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(93,23): warning CS8618: Non-nullable property 'ZipCode' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0597087Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(99,23): warning CS8618: Non-nullable property 'GroupNumber' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0597752Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(105,23): warning CS8618: Non-nullable property 'PrimaryLanguage' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0598412Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/Insurer.cs(11,23): warning CS8618: Non-nullable property 'InsuranceCarrierName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.0599079Z #27 5.643 /src/src/CareCoordinationClientAPI.Domain/Models/Insurer.cs(14,23): warning CS8618: Non-nullable property 'InsuranceCarrierDisplayName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:51.2435526Z #27 5.682   CareCoordinationClientAPI.Domain -> /app/build/CareCoordinationClientAPI.Domain.dll
+2025-07-08T12:39:52.4665550Z #27 6.824 /src/src/CareCoordinationClientAPI.Application/Interface/ISqlRepository.cs(3,7): warning CS0105: The using directive for 'CareCoordinationClientAPI.Application.Dto' appeared previously in this namespace [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4666493Z #27 6.828 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(4,7): warning CS0105: The using directive for 'CareCoordinationClientAPI.Application.Dto' appeared previously in this namespace [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4667196Z #27 6.829 /src/src/CareCoordinationClientAPI.Application/Repositories/CosmosDbRepository.cs(4,7): warning CS0105: The using directive for 'CareCoordinationClientAPI.Application.Dto' appeared previously in this namespace [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4667908Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Repositories/SqlRepository.cs(4,7): warning CS0105: The using directive for 'CareCoordinationClientAPI.Application.Dto' appeared previously in this namespace [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4668932Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Services/GetCareCoordinationRequest.cs(11,7): warning CS0105: The using directive for 'CareCoordinationClientAPI.Application.Dto' appeared previously in this namespace [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4669665Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Dto/CosmosDbSettings.cs(13,23): warning CS8618: Non-nullable property 'EndpointUri' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4670438Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Dto/CosmosDbSettings.cs(14,23): warning CS8618: Non-nullable property 'PrimaryKey' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4671184Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Dto/CosmosDbSettings.cs(15,23): warning CS8618: Non-nullable property 'DatabaseName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4671950Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Dto/CosmosDbSettings.cs(16,23): warning CS8618: Non-nullable property 'ContainerName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4672735Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Dto/CareCoordinationRequestFromImageOne.cs(89,36): warning CS8618: Non-nullable property 'ProcedureCodes' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4673511Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(28,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4674273Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(29,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4674890Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(30,35): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4675479Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(31,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4676083Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(32,27): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4676745Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(33,29): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4677352Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(34,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4677946Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(39,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4678558Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(40,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4679166Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(41,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4679759Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(43,36): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4680367Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(44,36): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4680956Z #27 6.830 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(45,28): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4681564Z #27 6.831 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(46,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4682164Z #27 6.832 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(47,31): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4682767Z #27 6.832 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(48,30): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4713165Z #27 6.832 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(49,35): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4713978Z #27 6.832 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(50,39): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4714518Z #27 6.832 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(57,30): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4715052Z #27 6.832 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(58,29): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4715790Z #27 6.832 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(63,30): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4716309Z #27 6.832 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(64,29): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4716836Z #27 6.832 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(70,28): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4717367Z #27 6.833 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(71,45): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4717922Z #27 6.833 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(72,29): warning CS8625: Cannot convert null literal to non-nullable reference type. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4718458Z #27 6.834 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(81,27): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4718994Z #27 6.834 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(82,29): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4719525Z #27 6.834 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(83,27): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4720041Z #27 6.834 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(84,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4720575Z #27 6.834 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(85,28): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4721161Z #27 6.835 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(86,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4721693Z #27 6.835 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(87,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4722210Z #27 6.835 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(88,27): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4722739Z #27 6.836 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(89,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4723369Z #27 6.836 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(90,40): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4723980Z #27 6.836 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(91,46): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4724505Z #27 6.836 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(93,43): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4725049Z #27 6.836 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(94,35): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:52.4725470Z #27 6.903   CareCoordinationClientAPI.Application -> /app/build/CareCoordinationClientAPI.Application.dll
+2025-07-08T12:39:53.7866611Z #27 8.376   CareCoordinationClientAPI -> /app/build/CareCoordinationClientAPI.dll
+2025-07-08T12:39:53.9606252Z #27 8.394 
+2025-07-08T12:39:53.9607430Z #27 8.396 Build succeeded.
+2025-07-08T12:39:53.9607757Z #27 8.397 
+2025-07-08T12:39:53.9608239Z #27 8.397 /src/src/CareCoordinationClientAPI.Domain/Models/StatusDetails.cs(12,23): warning CS8618: Non-nullable property 'Notes' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:53.9609065Z #27 8.397 /src/src/CareCoordinationClientAPI.Domain/Models/ServiceTypeDTO.cs(13,23): warning CS8618: Non-nullable property 'ServiceTypeCode' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:53.9609838Z #27 8.398 /src/src/CareCoordinationClientAPI.Domain/Models/ServiceTypeDTO.cs(19,23): warning CS8618: Non-nullable property 'ServiceType' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:53.9610592Z #27 8.398 /src/src/CareCoordinationClientAPI.Domain/Models/RequesterDetails.cs(10,23): warning CS8618: Non-nullable property 'FirstName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:53.9611711Z #27 8.399 /src/src/CareCoordinationClientAPI.Domain/Models/RequesterDetails.cs(12,23): warning CS8618: Non-nullable property 'LastName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:53.9612476Z #27 8.399 /src/src/CareCoordinationClientAPI.Domain/Models/RequesterDetails.cs(14,23): warning CS8618: Non-nullable property 'PhoneNumber' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0749222Z #27 8.399 /src/src/CareCoordinationClientAPI.Domain/Models/RequesterDetails.cs(16,23): warning CS8618: Non-nullable property 'Extension' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0750763Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/RequesterDetails.cs(19,23): warning CS8618: Non-nullable property 'Fax' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0751518Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/RequesterDetails.cs(21,23): warning CS8618: Non-nullable property 'Email' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0752266Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/RequesterDetails.cs(23,23): warning CS8618: Non-nullable property 'Facility' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0753025Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/RequestedServicesDto.cs(10,23): warning CS8618: Non-nullable property 'Program' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0753978Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/RequestedServicesDto.cs(13,23): warning CS8618: Non-nullable property 'ServicePlaceCode' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0754763Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/RequestedServicesDto.cs(16,23): warning CS8618: Non-nullable property 'ServicePlace' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0755545Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/RequestedServicesDto.cs(19,23): warning CS8618: Non-nullable property 'ServicePlaceFullName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0756431Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/RequestedServicesDto.cs(22,37): warning CS8618: Non-nullable property 'ServiceTypes' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0757192Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ReasonDetails.cs(10,23): warning CS8618: Non-nullable property 'Reason' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0757928Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ReasonDetails.cs(12,23): warning CS8618: Non-nullable property 'Notes' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0758735Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(9,23): warning CS8618: Non-nullable property 'Fax' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0759486Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(11,23): warning CS8618: Non-nullable property 'PhoneExtension' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0760239Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(13,23): warning CS8618: Non-nullable property 'Phone' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0760990Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(15,23): warning CS8618: Non-nullable property 'Zip' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0761738Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(17,23): warning CS8618: Non-nullable property 'StateCode' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0762496Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(19,23): warning CS8618: Non-nullable property 'County' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0763320Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(21,23): warning CS8618: Non-nullable property 'City' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0764072Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(23,23): warning CS8618: Non-nullable property 'Address2' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0764895Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(25,23): warning CS8618: Non-nullable property 'Address1' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0765628Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(29,23): warning CS8618: Non-nullable property 'TIN' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0766374Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(31,23): warning CS8618: Non-nullable property 'NPI' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0767170Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(33,23): warning CS8618: Non-nullable property 'LastName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0767938Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(35,23): warning CS8618: Non-nullable property 'FirstName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0768707Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(37,23): warning CS8618: Non-nullable property 'OrganizationName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0769483Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(44,23): warning CS8618: Non-nullable property 'ProviderTypeIdentifier' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0770257Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(56,23): warning CS8618: Non-nullable property 'ProviderNetworkType' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0771026Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(58,23): warning CS8618: Non-nullable property 'QuickCreateSource' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0771790Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProviderContract.cs(60,23): warning CS8618: Non-nullable property 'SourceNotes' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0772593Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProcedureCode.cs(10,23): warning CS8618: Non-nullable property 'Name' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0773408Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProcedureCode.cs(12,23): warning CS8618: Non-nullable property 'SimplifiedDescription' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0774179Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/ProcedureCode.cs(14,23): warning CS8618: Non-nullable property 'Units' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0774923Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(27,23): warning CS8618: Non-nullable property 'MemberId' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0775842Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(33,23): warning CS8618: Non-nullable property 'Gender' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.0776602Z #27 8.400 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(38,23): warning CS8618: Non-nullable property 'FirstName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.1813492Z #27 8.403 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(44,23): warning CS8618: Non-nullable property 'MiddleName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.1815423Z #27 8.404 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(50,23): warning CS8618: Non-nullable property 'LastName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.1816315Z #27 8.405 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(64,23): warning CS8618: Non-nullable property 'AddressLine1' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.1816974Z #27 8.405 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(70,23): warning CS8618: Non-nullable property 'AddressLine2' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.1817637Z #27 8.405 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(75,23): warning CS8618: Non-nullable property 'City' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.1818499Z #27 8.405 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(81,23): warning CS8618: Non-nullable property 'County' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.1819171Z #27 8.405 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(87,23): warning CS8618: Non-nullable property 'StateCode' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.1819834Z #27 8.405 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(93,23): warning CS8618: Non-nullable property 'ZipCode' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.1820569Z #27 8.405 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(99,23): warning CS8618: Non-nullable property 'GroupNumber' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.1821235Z #27 8.405 /src/src/CareCoordinationClientAPI.Domain/Models/MemberPolicyDTO.cs(105,23): warning CS8618: Non-nullable property 'PrimaryLanguage' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.1821896Z #27 8.405 /src/src/CareCoordinationClientAPI.Domain/Models/Insurer.cs(11,23): warning CS8618: Non-nullable property 'InsuranceCarrierName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.1822570Z #27 8.405 /src/src/CareCoordinationClientAPI.Domain/Models/Insurer.cs(14,23): warning CS8618: Non-nullable property 'InsuranceCarrierDisplayName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Domain/CareCoordinationClientAPI.Domain.csproj]
+2025-07-08T12:39:54.1823444Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Interface/ISqlRepository.cs(3,7): warning CS0105: The using directive for 'CareCoordinationClientAPI.Application.Dto' appeared previously in this namespace [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1824173Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(4,7): warning CS0105: The using directive for 'CareCoordinationClientAPI.Application.Dto' appeared previously in this namespace [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1824859Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Repositories/CosmosDbRepository.cs(4,7): warning CS0105: The using directive for 'CareCoordinationClientAPI.Application.Dto' appeared previously in this namespace [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1825467Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Repositories/SqlRepository.cs(4,7): warning CS0105: The using directive for 'CareCoordinationClientAPI.Application.Dto' appeared previously in this namespace [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1826231Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Services/GetCareCoordinationRequest.cs(11,7): warning CS0105: The using directive for 'CareCoordinationClientAPI.Application.Dto' appeared previously in this namespace [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1826872Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Dto/CosmosDbSettings.cs(13,23): warning CS8618: Non-nullable property 'EndpointUri' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1827561Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Dto/CosmosDbSettings.cs(14,23): warning CS8618: Non-nullable property 'PrimaryKey' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1828303Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Dto/CosmosDbSettings.cs(15,23): warning CS8618: Non-nullable property 'DatabaseName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1828972Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Dto/CosmosDbSettings.cs(16,23): warning CS8618: Non-nullable property 'ContainerName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1829680Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Dto/CareCoordinationRequestFromImageOne.cs(89,36): warning CS8618: Non-nullable property 'ProcedureCodes' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1830293Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(28,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1830831Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(29,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1831352Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(30,35): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1831894Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(31,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1832419Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(32,27): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1833003Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(33,29): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1833649Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(34,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1834173Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(39,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1834710Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(40,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1835228Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(41,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1835832Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(43,36): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1836357Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(44,36): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1836889Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(45,28): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1837421Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(46,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1837950Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(47,31): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1838466Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(48,30): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1838998Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(49,35): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1839518Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(50,39): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1840041Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(57,30): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1840555Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(58,29): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1841134Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(63,30): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1841656Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(64,29): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1842187Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(70,28): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1842703Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(71,45): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1843373Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(72,29): warning CS8625: Cannot convert null literal to non-nullable reference type. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1843916Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(81,27): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1844449Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(82,29): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1844972Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(83,27): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1845504Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(84,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1846029Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(85,28): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1846548Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(86,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1847083Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(87,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1847603Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(88,27): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1848137Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(89,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1848707Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(90,40): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1849240Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(91,46): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1849757Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(93,43): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1850286Z #27 8.405 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(94,35): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:39:54.1850637Z #27 8.405     101 Warning(s)
+2025-07-08T12:39:54.1850892Z #27 8.405     0 Error(s)
+2025-07-08T12:39:54.1851077Z #27 8.406 
+2025-07-08T12:39:54.1851284Z #27 8.406 Time Elapsed 00:00:07.86
+2025-07-08T12:39:54.1851496Z #27 DONE 8.8s
+2025-07-08T12:39:54.1851567Z 
+2025-07-08T12:39:54.1851811Z #28 [publish 1/1] RUN dotnet publish "CareCoordinationClientAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
+2025-07-08T12:39:55.1951850Z #28 1.015   Determining projects to restore...
+2025-07-08T12:39:56.2155427Z #28 2.035   All projects are up-to-date for restore.
+2025-07-08T12:39:56.9016622Z #28 2.720   CareCoordinationClientAPI.Domain -> /src/src/CareCoordinationClientAPI.Domain/bin/Release/net8.0/CareCoordinationClientAPI.Domain.dll
+2025-07-08T12:40:00.9082729Z #28 6.598 /src/src/CareCoordinationClientAPI.Application/Interface/ISqlRepository.cs(3,7): warning CS0105: The using directive for 'CareCoordinationClientAPI.Application.Dto' appeared previously in this namespace [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9089901Z #28 6.600 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(4,7): warning CS0105: The using directive for 'CareCoordinationClientAPI.Application.Dto' appeared previously in this namespace [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9090639Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Repositories/CosmosDbRepository.cs(4,7): warning CS0105: The using directive for 'CareCoordinationClientAPI.Application.Dto' appeared previously in this namespace [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9091261Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Repositories/SqlRepository.cs(4,7): warning CS0105: The using directive for 'CareCoordinationClientAPI.Application.Dto' appeared previously in this namespace [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9091879Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Services/GetCareCoordinationRequest.cs(11,7): warning CS0105: The using directive for 'CareCoordinationClientAPI.Application.Dto' appeared previously in this namespace [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9092531Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Dto/CosmosDbSettings.cs(13,23): warning CS8618: Non-nullable property 'EndpointUri' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9093417Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Dto/CosmosDbSettings.cs(14,23): warning CS8618: Non-nullable property 'PrimaryKey' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9094324Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Dto/CosmosDbSettings.cs(15,23): warning CS8618: Non-nullable property 'DatabaseName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9095008Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Dto/CosmosDbSettings.cs(16,23): warning CS8618: Non-nullable property 'ContainerName' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9095698Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Dto/CareCoordinationRequestFromImageOne.cs(89,36): warning CS8618: Non-nullable property 'ProcedureCodes' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9096409Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(28,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9096934Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(29,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9097471Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(30,35): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9097994Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(31,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9098529Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(32,27): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9099065Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(33,29): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9099595Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(34,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9100130Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(39,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9100654Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(40,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9101229Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(41,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9101756Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(43,36): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9102284Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(44,36): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9102800Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(45,28): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9103524Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(46,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9104046Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(47,31): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9104580Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(48,30): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9105098Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(49,35): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9105641Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(50,39): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9106159Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(57,30): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9106690Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(58,29): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9107241Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(63,30): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9107774Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(64,29): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9108293Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(70,28): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9108894Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(71,45): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9109449Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(72,29): warning CS8625: Cannot convert null literal to non-nullable reference type. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9109991Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(81,27): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9110528Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(82,29): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9111096Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(83,27): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9111628Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(84,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9112145Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(85,28): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9112678Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(86,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9113201Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(87,32): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9113995Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(88,27): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9114515Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(89,33): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9115052Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(90,40): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9115571Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(91,46): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9116103Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(93,43): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9116625Z #28 6.602 /src/src/CareCoordinationClientAPI.Application/Mapper/CareCoordinationRequestMappingProfile.cs(94,35): warning CS8601: Possible null reference assignment. [/src/src/CareCoordinationClientAPI.Application/CareCoordinationClientAPI.Application.csproj]
+2025-07-08T12:40:00.9117151Z #28 6.728   CareCoordinationClientAPI.Application -> /src/src/CareCoordinationClientAPI.Application/bin/Release/net8.0/CareCoordinationClientAPI.Application.dll
+2025-07-08T12:40:03.0744810Z #28 8.894   CareCoordinationClientAPI -> /src/src/CareCoordinationClientAPI/bin/Release/net8.0/CareCoordinationClientAPI.dll
+2025-07-08T12:40:03.2668524Z #28 9.087   CareCoordinationClientAPI -> /app/publish/
+2025-07-08T12:40:04.0225625Z #28 DONE 9.8s
+2025-07-08T12:40:04.2184146Z 
+2025-07-08T12:40:04.2186167Z #29 [final 2/2] COPY --from=publish /app/publish .
+2025-07-08T12:40:05.0728264Z #29 DONE 0.9s
+2025-07-08T12:40:05.2416418Z 
+2025-07-08T12:40:05.2419519Z #30 exporting to image
+2025-07-08T12:40:05.2419744Z #30 exporting layers
+2025-07-08T12:40:06.1189442Z #30 exporting layers 1.0s done
+2025-07-08T12:40:06.3249526Z #30 writing image sha256:90f2f86a8693d9c4d5cfe6a7646254eef8fc39a930cf039263418abcfa682f37 done
+2025-07-08T12:40:06.3251328Z #30 naming to ***/carecoordinationclientapi:CareCoordinationClientAPI_develop-25.7.8.21 0.0s done
+2025-07-08T12:40:06.3251661Z #30 DONE 1.1s
+2025-07-08T12:40:06.3448015Z 
+2025-07-08T12:40:06.3632994Z ##[warning]No data was written into the file /agent/_work/_temp/task_outputs/build_1751978406346.txt
+2025-07-08T12:40:06.3719958Z ##[section]Finishing: Build Docker image

@@ -1,0 +1,66 @@
+name: "CareCoordination Backed - PR"
+
+trigger:
+  branches:
+    exclude:
+      - "*"
+
+pool:
+  vmImage: "windows-latest"
+
+variables:
+  buildConfiguration: "Release"
+  dotnetVersion: "9.0.1"
+  solutionPath: ""
+  testPath: ""
+  nugetConfigPath: ""
+
+parameters:
+  - name: dotnetVersion
+    type: string
+  - name: nugetConfigPath
+    type: string
+  - name: solutionPath
+    type: string
+    value: "**/*.sln"
+  - name: testPath
+    type: string
+    value: "Backend/Carecoordination.Tests/Carecoordination.Tests.csproj"
+
+stages:
+  - stage: Build
+    displayName: "Unit and Acceptance Tests"
+    dependsOn: []
+    jobs:
+      - job: Build and CodeAnalysisBackend
+        steps:
+          - task: UseDotNet@2
+            displayName: "Install .NET ${{ parameters.dotnetVersion }} SDK"
+            inputs:
+              packageType: "sdk"
+              version: ${{ parameters.dotnetVersion }}
+          - task: DotNetCoreCLI@2
+            displayName: dotnet restore
+            inputs:
+              command: "restore"
+              projects: ${{ parameters.solutionPath }}
+              feedsToUse: "config"
+              nugetConfigPath: ${{ parameters.nugetConfigPath }}
+          - task: DotNetCoreCLI@2
+            displayName: 'dotnet build'
+            inputs:
+              command: 'build'
+              projects: '**/*.csproj'
+              arguments: '--configuration $(buildConfiguration)'         
+          - task: DotNetCoreCLI@2
+            displayName: dotnet test
+            inputs:
+              command: "test"
+              arguments: '${{ parameters.testPath }} --no-restore --collect "XPlat Code coverage"'
+              publishTestResults: true
+              testRunTitle: UnitTests
+          - task: PublishCodeCoverageResults@1
+            displayName: "Publish code coverage results"
+            inputs:
+              codeCoverageTool: "Cobertura"
+              summaryFileLocation: "$(Agent.TempDirectory)/**/*coverage.cobertura.xml"

@@ -1,0 +1,194 @@
+Sure! Here are the steps to create a PR pipeline and a release pipeline for a .NET project, including deployment to an on-premise server.
+
+### PR Pipeline for .NET Project
+
+1. **Create a YAML file for the PR pipeline**:
+   Create a file named `pr-pipeline.yml` in your repository with the following content:
+
+   ```yaml
+   trigger:
+     branches:
+       exclude:
+         - '*'
+
+   pr:
+     branches:
+       include:
+         - '*'
+
+   pool:
+     vmImage: 'windows-latest'
+
+   variables:
+     buildConfiguration: 'Release'
+
+   stages:
+     - stage: Build
+       jobs:
+         - job: Build
+           steps:
+             - task: UseDotNet@2
+               inputs:
+                 packageType: 'sdk'
+                 version: '6.x.x' # Use the appropriate .NET version
+
+             - script: |
+                 dotnet restore
+                 dotnet build --configuration $(buildConfiguration)
+               displayName: 'Restore and Build'
+
+             - script: |
+                 dotnet test --configuration $(buildConfiguration) --collect:"Code coverage"
+               displayName: 'Run Tests'
+   ```
+
+2. **Add the pipeline to Azure DevOps**:
+   - Go to Azure DevOps.
+   - Navigate to Pipelines > Pipelines.
+   - Click on "New Pipeline" and follow the steps to connect your repository.
+   - Select "Existing Azure Pipelines YAML file" and choose the `pr-pipeline.yml` file.
+
+3. **Set up build validation**:
+   - Go to Repos > Branches.
+   - Click on the three dots next to your main branch and select "Branch policies".
+   - Under "Build validation", add the PR pipeline you created.
+
+### Release Pipeline for .NET Project to Deploy on On-Premise Server
+
+To create a pipeline in Azure DevOps that allows you to select environments using checkboxes, you can use pipeline variables and conditional insertion of stages. Here's how you can set it up:
+
+### Step 1: Define Pipeline Variables
+First, define pipeline variables for each environment. You can set these variables through the Azure DevOps UI when you run the pipeline.
+
+### Step 2: Create the YAML Pipeline
+Here's an example of how you can modify your pipeline to include checkboxes for different environments:
+
+```yaml
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  publishDir: '$(Build.ArtifactStagingDirectory)/publish'
+
+stages:
+  - stage: Build
+    jobs:
+      - job: Build
+        steps:
+          - task: UseDotNet@2
+            inputs:
+              packageType: 'sdk'
+              version: '6.x.x' # Use the appropriate .NET version
+
+          - script: |
+              dotnet restore
+              dotnet build --configuration $(buildConfiguration)
+              dotnet publish --configuration $(buildConfiguration) --output $(publishDir)
+            displayName: 'Restore, Build, and Publish'
+
+          - publish: $(publishDir)
+            artifact: drop
+
+  - stage: Deploy_DEV
+    condition: and(succeeded(), eq(variables['DeployToDEV'], 'true'))
+    jobs:
+      - deployment: Deploy
+        environment: 'DEV'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - script: |
+                    # Replace with your deployment script
+                    echo "Deploying to DEV environment"
+                  displayName: 'Deploy to DEV environment'
+
+  - stage: Deploy_INTG2
+    condition: and(succeeded(), eq(variables['DeployToINTG2'], 'true'))
+    jobs:
+      - deployment: Deploy
+        environment: 'INTG2'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - script: |
+                    # Replace with your deployment script
+                    echo "Deploying to INTG2 environment"
+                  displayName: 'Deploy to INTG2 environment'
+
+  - stage: Deploy_INTG
+    condition: and(succeeded(), eq(variables['DeployToINTG'], 'true'))
+    jobs:
+      - deployment: Deploy
+        environment: 'INTG'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - script: |
+                    # Replace with your deployment script
+                    echo "Deploying to INTG environment"
+                  displayName: 'Deploy to INTG environment'
+
+  - stage: Deploy_UAT
+    condition: and(succeeded(), eq(variables['DeployToUAT'], 'true'))
+    jobs:
+      - deployment: Deploy
+        environment: 'UAT'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - script: |
+                    # Replace with your deployment script
+                    echo "Deploying to UAT environment"
+                  displayName: 'Deploy to UAT environment'
+
+  - stage: Deploy_PROD
+    condition: and(succeeded(), eq(variables['DeployToPROD'], 'true'))
+    jobs:
+      - deployment: Deploy
+        environment: 'PROD'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - script: |
+                    # Replace with your deployment script
+                    echo "Deploying to PROD environment"
+                  displayName: 'Deploy to PROD environment'
+```
+
+### Step 3: Set Variables in Azure DevOps UI
+When you run the pipeline, you can set the variables `DeployToDEV`, `DeployToINTG2`, `DeployToINTG`, `DeployToUAT`, and `DeployToPROD` to `true` or `false` using checkboxes in the Azure DevOps UI. This will determine which stages are executed.
+
+### Summary
+- **Define pipeline variables** for each environment.
+- **Modify the YAML pipeline** to include conditional stages based on these variables.
+- **Set the variables** in the Azure DevOps UI when running the pipeline to select the environments for deployment.
+
+This setup allows you to easily manage deployments to multiple environments with the flexibility to include or exclude any environment as needed.
+
+If you have any further questions or need additional assistance, feel free to ask!

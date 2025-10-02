@@ -1,0 +1,21 @@
+https://www.puresourcecode.com/tools/application-insights-select-and-filter/
+
+exceptions
+| where outerMessage  contains "PolicyDeliveryPortal"
+| top 10 by timestamp desc
+| project  appName, assembly, message,outerMessage,timestamp
+
+
+exceptions
+| top 10 by timestamp desc
+| project  appName, assembly, message,outerMessage,timestamp
+
+traces
+| where message  contains "PolicyDeliveryPortal"
+| top 10 by timestamp desc 
+| project  appName, message,timestamp
+
+customEvents
+| where operation_Name  contains "PolicyDeliveryPortal"
+| top 10 by timestamp desc
+| project appName, name,  operation_Name, timestamp 

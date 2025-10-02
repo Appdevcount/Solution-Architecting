@@ -1,0 +1,612 @@
+
+
+## 📘 Architecture Decision Record (ADR) – Guideline Template
+
+This template outlines the standard structure for documenting architectural decisions. It ensures clarity, traceability, and consistency across all architecture-related decisions.
+
+---
+
+### 1. **Title**
+- A short, descriptive phrase summarizing the decision.
+- Example: *"Use Kafka for data exchange between UPX and TruCare"*
+
+---
+
+### 2. **Date**
+- The date the decision was finalized.
+
+---
+
+### 3. **Status**
+- Indicates the current state of the ADR:
+  - **New**: Draft state; no decision made yet.
+  - **Proposed**: Awaiting approval from governance or leadership.
+  - **Accepted**: Approved and ready for implementation.
+  - **Superseded**: Replaced by a newer ADR (must have been previously accepted).
+
+---
+
+### 4. **Context**
+- Describes the situation or problem that necessitated the decision.
+- Explains the background, constraints, and forces at play.
+
+---
+
+### 5. **Decision Driver**
+- Lists the functional and non-functional requirements influencing the decision.
+- Examples: scalability, performance, maintainability, compliance, etc.
+
+---
+
+### 6. **Considered Options**
+- Documents all alternative solutions evaluated.
+- Explains pros and cons of each to justify the final choice.
+
+---
+
+### 7. **Decision**
+- Clearly states the chosen solution.
+- Includes rationale and how it addresses the decision drivers.
+
+---
+
+### 8. **Consequences**
+- Describes the impact of the decision:
+  - **Positive**: Benefits and improvements.
+  - **Negative**: Trade-offs, limitations, or risks introduced.
+- Encourages thoughtful analysis of long-term effects.
+
+---
+
+### 9. **Compliance / Risk** *(Optional but Recommended)*
+- Outlines how the decision aligns with compliance standards.
+- Identifies risks and how they will be mitigated or governed.
+
+---
+
+### 10. **Notes** *(Optional)*
+- Metadata and change history:
+  - Original author
+  - Approval date
+  - Approved by
+  - Superseded date
+  - Last modified date
+  - Modified by
+  - Additional remarks
+
+---
+
+Would you like this guideline saved as a reusable **Markdown**, **Word**, or **PDF** template? I can generate that for you!
+
+
+Here is a **well-formatted Architecture Decision Record (ADR)** for the two decisions you provided, using the recommended structure and including all relevant metadata and sections:
+
+---
+
+## 🧾 Architecture Decision Record (ADR)
+
+---
+
+### 📌 ADR 001: Use a Hybrid of Service-Based, Microservices, and Event-Driven Architecture
+
+- **Date**: 2024-08-22  
+- **Status**: New  
+
+---
+
+#### **Title**  
+Use a hybrid of service-based architecture, microservices, and event-driven architecture style
+
+---
+
+#### **Context**  
+The UPX application has diverse components with varying architectural needs. Some components require modularity and independent deployment (microservices), others benefit from shared services (service-based), and some require asynchronous communication (event-driven). A single architectural style would not sufficiently address all functional and non-functional requirements.
+
+---
+
+#### **Decision Driver**  
+- Need for modularity and scalability  
+- Support for asynchronous workflows  
+- Maintainability and team autonomy  
+- Performance and cost optimization  
+
+---
+
+#### **Considered Options**  
+1. **Pure Microservices**  
+   - ✅ High modularity  
+   - ❌ High complexity and overhead  
+2. **Service-Based Architecture**  
+   - ✅ Easier to manage shared services  
+   - ❌ Less flexibility for scaling individual components  
+3. **Event-Driven Architecture**  
+   - ✅ Decoupled communication  
+   - ❌ Harder to debug and trace  
+4. **Hybrid Approach** *(Chosen)*  
+   - ✅ Combines strengths of all three styles  
+   - ❌ Requires careful governance and design discipline  
+
+---
+
+#### **Decision**  
+Adopt a hybrid architecture combining service-based, microservices, and event-driven styles. This allows UPX to evolve modularly, support asynchronous workflows, and optimize for performance and cost.
+
+---
+
+#### **Consequences**  
+
+**Positive**:
+- Improved modularity and scalability  
+- Better alignment with domain-driven design  
+- Flexibility in choosing the right style per component  
+
+**Negative**:
+- Increased architectural complexity  
+- Requires strong governance and documentation  
+
+**Risks**:
+- Poor implementation may lead to inconsistent patterns  
+- Higher learning curve for new developers  
+
+---
+
+#### **Compliance / Risk**  
+- Must follow internal architectural governance for service boundaries  
+- Logging, monitoring, and observability must be standardized  
+- Periodic reviews to ensure architectural consistency  
+
+---
+
+#### **Notes**  
+- **Original Author**: [Your Name or Team]  
+- **Approval Date**: TBD  
+- **Approved By**: TBD  
+- **Last Modified**: 2024-08-22  
+- **Modified By**: [Your Name]  
+
+---
+
+### 📌 ADR 002: Use Hybrid Split for UPX Frontend Architecture
+
+- **Date**: 2024-08-22  
+- **Status**: New  
+
+---
+
+#### **Title**  
+Use hybrid split for whole UPX project
+
+---
+
+#### **Context**  
+UPX includes multiple subdomains such as Dashboard, Case Creation, Appeals, and Authorization. A consistent and modular UI is required that supports reuse and team autonomy. A single split strategy (horizontal or vertical) does not meet all needs.
+
+---
+
+#### **Decision Driver**  
+- Need for modular and reusable UI components  
+- Support for domain-driven frontend development  
+- Flexibility in team ownership and deployment  
+
+---
+
+#### **Considered Options**  
+1. **Horizontal Split Only**  
+   - ✅ Good for shared UI components  
+   - ❌ Difficult to isolate domain logic  
+2. **Vertical Split Only**  
+   - ✅ Aligns with DDD  
+   - ❌ Harder to reuse components  
+3. **Hybrid Split** *(Chosen)*  
+   - ✅ Combines strengths of both approaches  
+   - ❌ Requires coordination and routing complexity  
+
+---
+
+#### **Decision**  
+Adopt a hybrid split strategy:
+- **Vertical split** for domain-specific areas like Authentication and Dashboard  
+- **Horizontal split** for shared subdomains like Case Creation and Appeals  
+
+---
+
+#### **Consequences**  
+
+**Positive**:
+- Enables reuse of micro-frontends  
+- Teams can own and deploy independently  
+- Aligns with both UI and domain needs  
+
+**Negative**:
+- Increased complexity in routing and communication  
+- Requires strong observability and debugging tools  
+
+**Risks**:
+- Without proper tooling, debugging becomes difficult  
+- Coordination overhead between teams  
+
+---
+
+#### **Compliance / Risk**  
+- Must follow micro-frontend governance and routing standards  
+- Observability and error tracking must be implemented across all splits  
+- Shared libraries must be versioned and documented  
+
+---
+
+#### **Notes**  
+- **Original Author**: [Your Name or Team]  
+- **Approval Date**: TBD  
+- **Approved By**: TBD  
+- **Last Modified**: 2024-08-22  
+- **Modified By**: [Your Name]  
+
+---
+
+Would you like these ADRs exported to a **Markdown**, **PDF**, or **Word** document format? I can generate that for you.
+
+Here is the full, formatted text version of the **Architecture Decision Record (ADR) for Care Coordination Solution for eP Convergence**, optimized for `.txt` readability:
+
+```
+================================================================================
+ARCHITECTURE DECISION RECORD (ADR)
+================================================================================
+
+Title: Care Coordination Solution for eP Convergence
+Assigned Architect(s): Pawan Suryawanshi
+
+Solution Architecture Vertical:
+- CCM
+- Platform and Innovation
+- Data and Analytics
+- Shared Services
+- Client Liaison
+
+Status:
+- In Progress
+- Completed
+- Backlog
+
+Category:
+- Deliver with the Current Program
+- Innovation
+- Strategic
+- Simplify Ecosystem
+
+Decision Required to Support PI Planning
+Last Reviewed Date: 02/25/2025
+
+--------------------------------------------------------------------------------
+PROBLEM STATEMENT
+--------------------------------------------------------------------------------
+eviCore plans to converge eviCore Platform (eP) with Image One (IO) to address:
+
+- High maintenance cost
+- Lack of stability
+- Replay/Rehydration challenges
+- Limited usage (3 Health Plans and 4 Programs)
+
+This ADR focuses on enabling the Care Coordination feature in IO.
+
+--------------------------------------------------------------------------------
+SCOPE
+--------------------------------------------------------------------------------
+Limited to Plans and Programs related to eP Convergence.
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+Care Coordination requests are created via a request build process. Key steps:
+
+- Input requester, insurer, care coordination type, and reason
+- Member selection and eligibility/delegation checks
+- Submit request if checks pass
+
+Current Volume: ~1300 requests/month
+
+--------------------------------------------------------------------------------
+ADDITIONAL NOTES
+--------------------------------------------------------------------------------
+- Used by Cigna Commercial for HH, DME therapy
+- Referrals via portal, phone, fax
+- iCare Coordination portal used for tracking/documentation
+- Workflow includes contacting providers
+- Not related to pre-authorization
+- Roles: Case Manager
+- Case Status: Open, Close
+
+--------------------------------------------------------------------------------
+ARCHITECTURE DECISION
+--------------------------------------------------------------------------------
+Option #1 [RECOMMENDED]: Build a new Care Coordination UI component using React with SSO access.
+
+Decision Drivers:
+- Strategic solution
+- Loosely coupled architecture
+- Enterprise-recommended tech stack
+
+Summary:
+- UI: ReactJS Micro UI hosted in IO domain
+- APIs: Reuse IO APIs, new API for DB interaction
+- DB: Dedicated tables in IO Pre-AuthThin
+- Integration: Load CC users into IO, authorize preview access
+- Authentication: JWT-based SSO (OKTA deferred)
+- Deployment: On-Prem
+
+--------------------------------------------------------------------------------
+DOCUMENT HANDLING
+--------------------------------------------------------------------------------
+Sources:
+- External (email, fax)
+
+Types:
+- Clinical, faxes, member/legal documentation
+
+Volume:
+- 1 to 100+ pages per case
+
+Growth:
+- Expected increase
+
+Deletion Reasons:
+- Attached to wrong case
+- Only supervisors can delete
+
+--------------------------------------------------------------------------------
+ALTERNATIVE OPTIONS
+--------------------------------------------------------------------------------
+
+Option #3: New Page in IO
+- Pros:
+  * Low impact
+  * Reuse existing APIs
+  * Cleaner separation with dedicated DB
+- Cons:
+  * Coupled with IO
+  * Harder to extend to other platforms
+  * Historic data management overhead
+
+Option #6: Reuse eP Micro-UI & Services
+- Pros:
+  * Reuse existing tech stack
+  * Extendable to other platforms
+  * Consistent UI with UCX theme
+- Cons:
+  * Heavy dependency on eP ingestion
+  * Requires schema/code migration
+  * Additional infrastructure and cost
+
+--------------------------------------------------------------------------------
+APPROVERS FOR DECISION
+--------------------------------------------------------------------------------
+
+| Role | Approver       | Comments |
+|------|----------------|----------|
+| SA   | Narayan Bhat   |          |
+
+--------------------------------------------------------------------------------
+IMPLICATIONS / CONSEQUENCES
+--------------------------------------------------------------------------------
+- JWT-based SSO used temporarily
+- Future backlog for OKTA integration
+
+--------------------------------------------------------------------------------
+ASSUMPTIONS
+--------------------------------------------------------------------------------
+- SSO will transition to OKTA
+- UI and API hosted On-Prem
+
+--------------------------------------------------------------------------------
+REFERENCES
+--------------------------------------------------------------------------------
+- Care Coordination - Domain
+- CareCoordinationServices
+
+================================================================================
+```
+
+Let me know if you'd like both ADRs combined into one document or converted into another format like Markdown or PDF!
+
+=================================================================================
+Here is the full, formatted text version of the **Architecture Decision Record (ADR) for DME and HH Implementation in eP Convergence**, optimized for `.txt` readability:
+
+```
+================================================================================
+ARCHITECTURE DECISION RECORD (ADR)
+================================================================================
+
+Title: ADR for DME and HH Implementation in eP Convergence
+Assigned Architect(s): Pawan Suryawanshi
+
+Solution Architecture Vertical:
+- CCM
+- Platform and Innovation
+- Data and Analytics
+- Shared Services
+- Client Liaison
+
+Status:
+- In Progress
+- Completed
+- Backlog
+
+Category:
+- Deliver with the current program
+- Innovation
+- Strategic
+- Simplify Ecosystem
+
+Decision Required to Support PI Planning
+Last Reviewed Date: 04/11/2025
+
+--------------------------------------------------------------------------------
+UPDATE
+--------------------------------------------------------------------------------
+As per update received on May 21, 2025, Cigna has decided to delegate full UM 
+(i.e., Prior Auth) capabilities to eviCore for Cigna Commercial HH and DME. 
+Hence all related work has been put on HOLD.
+
+--------------------------------------------------------------------------------
+PROBLEM STATEMENT
+--------------------------------------------------------------------------------
+eviCore plans to converge eviCore Platform with Image One to resolve challenges:
+- High maintenance cost
+- Lack of stability
+- Replay/Rehydration challenges
+- Limited usage (3 Health Plans and 4 Programs)
+
+This ADR focuses on evaluating options to implement DME and HH Commercial flow 
+in Image One.
+
+Scope: Limited to Plans and Programs related to eP Convergence
+
+Additional Details:
+- DME/HH EDI implementation in Image One
+
+--------------------------------------------------------------------------------
+ARCHITECTURE DECISION
+--------------------------------------------------------------------------------
+Based on decision drivers, Option #3 has been selected as the solution.
+
+Decision Drivers:
+- Tactical and Low Impact Solution
+- eP Convergence delivery timelines
+
+--------------------------------------------------------------------------------
+SUMMARY OF OPTIONS CONSIDERED FOR 278R AND 278N
+--------------------------------------------------------------------------------
+
+Option 1: Strategic Re-usable Solution
+- Pros:
+  * All fields from EDI 278 translated to ERSS
+  * New dedicated Kafka topic
+  * Strategic, Re-usable, Extendable
+- Cons:
+  * 200-400 hrs. of effort
+  * MRS document required
+  * Risk to eP timeline
+
+Option 2: Leverage eP Solution – Large Changes
+- Pros:
+  * Tactical
+  * App Dev team can process EDI Data
+- Cons:
+  * Mapping all fields and new topic needs effort
+  * MRS document required
+  * Future ERSS enhancements needed
+
+Option 3: Leverage eP Solution – Medium Changes [SELECTED]
+- Pros:
+  * Tactical
+  * Saves Kafka topic configuration time
+- Cons:
+  * Mapping fields still needed
+  * Use of eP topic not ideal for IO
+  * MRS document required
+
+Option 4: Leverage eP Solution – Minimum Changes
+- Pros:
+  * Tactical
+  * Low implementation effort
+  * Low risk to timelines
+- Cons:
+  * Incomplete data for 278N and 278R
+  * Use of eP topic not ideal
+  * Future ERSS enhancements needed
+
+Option 5: Use TLCC for EDI 278N Flow
+- Pros:
+  * Reuse existing logic
+- Cons:
+  * TLCC is dormant in PROD
+  * Overhead for 278N
+  * Additional configuration needed
+
+--------------------------------------------------------------------------------
+SUMMARY OF OPTIONS CONSIDERED FOR 278R
+--------------------------------------------------------------------------------
+
+Option 1: Use existing B2B to EDI integration
+- EDI JSON Format: Custom JSON used by eP
+- Kafka Topic: EDIIntake.V1 (eP Owned)
+- Observers: Windows Service
+- Deployment: On Premise
+- Repo: ImageOneERSSConsumer (TriWest team)
+
+- Pros:
+  * Leverages existing B2B logic
+  * Minimum change required
+  * Low impact
+- Cons:
+  * Multiple hops and failure points
+  * Tight coupling with IO
+  * B2B acts as EDI Pre Processor
+
+--------------------------------------------------------------------------------
+Option 4: New Event-Driven Solution
+--------------------------------------------------------------------------------
+- Pros:
+  * Loosely coupled
+  * Standardized event formats
+  * Single responsibility
+- Cons:
+  * Requires time, effort, and cost
+  * Hampers eP Convergence timelines
+  * Initial adoption limited
+
+--------------------------------------------------------------------------------
+SUMMARY OF OPTIONS CONSIDERED FOR 278N
+--------------------------------------------------------------------------------
+
+Option 1: Create Generic Solution for 278N
+- Pros:
+  * Strategic
+  * Extendable to similar requirements
+- Cons:
+  * Additional effort and delay
+  * AKS adds to timeline
+
+Option 2: Write Consumer for 278N in IO
+- Pros:
+  * No impact on existing apps
+  * Can use same event observer
+- Cons:
+  * Requires new consumer logic
+
+Option 3: Extend TLCC to listen to 278N Kafka
+- Pros:
+  * Reuse existing setup
+- Cons:
+  * TLCC is dormant
+  * Overhead for 278N
+  * Additional configuration needed
+
+--------------------------------------------------------------------------------
+APPROVERS FOR DECISION
+--------------------------------------------------------------------------------
+
+| Role | Approver       | Comments |
+|------|----------------|----------|
+| SA   | Narayan Bhat   |          |
+
+--------------------------------------------------------------------------------
+IMPLICATIONS / CONSEQUENCES
+--------------------------------------------------------------------------------
+- Enhancement required to move to ERSS approach (enterprise recommended)
+
+--------------------------------------------------------------------------------
+ASSUMPTIONS
+--------------------------------------------------------------------------------
+- TBD
+
+--------------------------------------------------------------------------------
+REFERENCES
+--------------------------------------------------------------------------------
+- DME/HH EDI implementation in IOne
+- DME/HH EDI Implementation for 278N and 278RR Flow
+- 278 KT Information - 2024 - Turbo - Confluence eviCore Healthcare
+
+================================================================================
+```
+
+Let me know if you'd like this combined with the previous ADR or styled differently!

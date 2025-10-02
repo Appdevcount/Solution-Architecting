@@ -1,0 +1,220 @@
+Could you clarify what you mean by **"Meeting Template Discussiond decision"**? It sounds like you're looking for a **meeting template** that includes a section for **discussions and decisions**, but I want to be sure I understand your intent.
+
+If that's correct, here's a simple and effective **Meeting Notes Template** with a focus on discussions and decisions:
+
+---
+
+### 📝 **Meeting Notes Template**
+
+**Meeting Title:**  
+**Date & Time:**  
+**Location / Platform:**  
+**Facilitator:**  
+**Note Taker:**  
+**Attendees:**
+
+---
+
+### 📌 **Agenda**
+
+1. [Topic 1]
+2. [Topic 2]
+3. [Topic 3]
+
+---
+
+### 💬 **Discussion Summary**
+
+| Topic | Key Points Discussed | Action Items | Owner | Deadline |
+|-------|----------------------|--------------|-------|----------|
+| Topic 1 | Summary of discussion | Task or follow-up | Person responsible | Due date |
+| Topic 2 | Summary of discussion | Task or follow-up | Person responsible | Due date |
+
+---
+
+### ✅ **Decisions Made**
+
+- Decision 1: [Brief description]
+- Decision 2: [Brief description]
+
+---
+
+### 📅 **Next Steps / Follow-ups**
+
+- [Action Item] – Assigned to [Name] – Due by [Date]
+
+---
+
+Would you like this in a downloadable format (like Word or Excel), or customized for a specific type of meeting (e.g., project planning, team sync, board meeting)?
+=========================
+
+Thanks for sharing the meeting summary. Based on the content you provided, here's a **formatted Meeting Minutes (MoM) template** tailored for **Requirement Queries and Design Discussion**, incorporating your actual discussion points:
+
+---
+
+### 🛠️ **Meeting Minutes – Provider Networking Rule Implementation Discussion**
+
+**Date:** April 23, 2025  
+**Time:** 10:00 PM – 10:30 PM IST  
+**Platform:** Webex  
+**Facilitator:** Sirajudeen R.  
+**Attendees:** Dolly Srivastava, Naveen Kumar Nanavala, Sunny Patil, Sean White, Ajaysingh Rawat, Sagar Shinde, Tyler Reilly
+
+---
+
+### 📌 **Agenda**
+
+- Discuss implementation approach for Provider Networking Rules in Cigna Commercial (Sleep, DME, HH)
+
+---
+
+### ❓ **Requirement Queries**
+
+| Topic | Query / Task | Owner | Status |
+|-------|--------------|-------|--------|
+| Ruleset Fabric Integration | Check with Mohit Kadam on recent direct integration in Volusia | App Dev Team | Pending |
+| Silent Pathway | Understand approach to get Provider ruleset output via silent Pathway | App Dev Team | Pending |
+| Site & Physician SP | Assess level of changes required | App Dev Team | In Progress |
+| Workflow Diagram | Collaborate with PO to create Site workflow for Cigna Commercial | App Dev Team | Planned |
+
+---
+
+### ✅ **Decisions & Next Steps**
+
+- App Dev team to follow up with Mohit Kadam regarding Volusia integration and LOE.
+- Evaluate changes needed in site and physician stored procedures.
+- Coordinate with PO to draft the desired workflow diagram for Cigna Commercial.
+
+---
+
+### 📅 **Action Items**
+
+| Action Item | Owner | Due Date |
+|-------------|-------|----------|
+| Connect with Mohit Kadam on ruleset integration | App Dev Team | [TBD] |
+| Analyze site and SP changes | App Dev Team | [TBD] |
+| Draft workflow diagram with PO | App Dev Team | [TBD] |
+
+---
+
+Would you like this exported as a **Word or Excel document** for sharing with your team? I can generate that for you right away.
+
+===================================
+Thanks for the detailed context! Here's a **professionally formatted Meeting Minutes (MoM)** based on your shared email thread regarding the **CaseBasket Modification for MultiTreatment – UI and Backend** discussion:
+
+---
+
+### 🛠️ **Meeting Minutes – CaseBasket Modification for MultiTreatment**
+
+**Date:** April 2, 2025  
+**Time:** 7:30 PM – 8:00 PM IST  
+**Platform:** Webex  
+**Facilitator:** Sirajudeen R.  
+**Attendees:** Ravichandra Patel, Rajivkumar Pillai, Supriya Kochar, Harshit Raikwal, Sagar Shinde, Amit Vyas, Sushant Nair, Bibbin Joseph, Ajaysingh Rawat, Elamparithi E., Aditya Mahakal, Namrata Chavan, Poonam Dhonde, Sunny Patil, Sean White  
+**Cc:** Pawan Suryawanshi
+
+---
+
+### 📌 **Agenda**
+
+- Discuss solution approach for CaseBasket Modification to support MultiTreatment in UI and Backend  
+- Review updated Home Health Design Document
+
+---
+
+### 💬 **Discussion Summary**
+
+#### **CDP UI – Procedure Section Enhancements**
+
+| Feature | Discussion Points |
+|---------|-------------------|
+| **Delete/Edit Procedure Codes** | Allowed for MD and Nurse roles. Training may be required to mitigate risks of associating unrelated procedure codes during inline edits. |
+| **Treatment Section** | Will not be displayed. |
+| **Add New Procedure Button** | Disabled for Home Health. Pathways can handle this if needed. |
+| **Approve All Procedures Button** | Disabled for Home Health. |
+| **Procedure Section Display (HH only)** | Will show: <br>• Unit of Measure from `cbCaseBasketTreatmentProcedure` <br>• Description/TypeOfServiceCode from `cbCaseBasketTreatment` |
+| **BCBSMN Specific Logic** | Procedure column will not be shown in CW or IO. It will be displayed only in CDP. <br>• MN has revenue codes added to the basket. <br>• For other plans, procedure code column will be shown. |
+
+---
+
+### ✅ **Decisions Made**
+
+- UI behavior will be customized for Home Health and BCBSMN as per the updated design document.
+- Risk mitigation training to be considered for MD/Nurse roles editing procedures.
+- Backend logic will align with UI constraints and plan-specific requirements.
+
+---
+
+### 📅 **Next Steps**
+
+| Action Item | Owner | Due Date |
+|-------------|-------|----------|
+| Update Confluence with latest design document | Pawan Suryawanshi | [TBD] |
+| Implement UI changes as per design | Frontend Team | [TBD] |
+| Align backend logic with UI constraints | Backend Team | [TBD] |
+
+---
+
+Would you like this exported as a **Word or PDF document** for sharing? I can generate that for you right away.
+====================================
+
+Here’s a **sample meeting notes template** specifically tailored for **Requirement Queries and Design Discussion** sessions. This format helps capture technical discussions, clarify requirements, and document design decisions effectively.
+
+---
+
+### 🛠️ **Requirement & Design Discussion Meeting Notes**
+
+**Meeting Title:** API Integration Requirements & Design  
+**Date & Time:** July 4, 2025 – 2:00 PM  
+**Location:** Microsoft Teams  
+**Facilitator:** Priya Mehta  
+**Note Taker:** John Carter  
+**Attendees:** Priya M., John C., Emily R., David L.
+
+---
+
+### 📌 **Agenda**
+
+1. Clarify API data requirements  
+2. Discuss authentication and error handling  
+3. Finalize design approach for integration
+
+---
+
+### ❓ **Requirement Queries**
+
+| Requirement | Question Raised | Clarification / Answer | Owner | Status |
+|-------------|------------------|-------------------------|--------|--------|
+| User Data API | What fields are mandatory? | `user_id`, `email`, `created_at` are required | Emily R. | Confirmed |
+| Rate Limits | What is the max request rate? | 1000 req/min per client | David L. | Confirmed |
+| Auth Method | Is OAuth 2.0 required? | Yes, with client credentials flow | Priya M. | Confirmed |
+
+---
+
+### 🧩 **Design Discussion Summary**
+
+| Topic | Key Points | Decision | Owner | Notes |
+|-------|------------|----------|-------|-------|
+| Authentication | Compared API key vs OAuth 2.0 | Use OAuth 2.0 for security | Team | Aligns with company policy |
+| Error Handling | Retry logic for 5xx errors | Implement exponential backoff | John C. | Use standard retry library |
+| Data Sync | Real-time vs batch | Use batch sync every 15 mins | Emily R. | Real-time not needed for MVP |
+
+---
+
+### ✅ **Decisions Made**
+
+- OAuth 2.0 with client credentials will be used for authentication.  
+- Batch data sync every 15 minutes is sufficient for Phase 1.  
+- Retry logic with exponential backoff will be implemented for 5xx errors.
+
+---
+
+### 📅 **Next Steps**
+
+- John to draft API integration flow diagram – Due July 7  
+- Emily to finalize required fields and share schema – Due July 6  
+- Priya to update design doc with decisions – Due July 8
+
+---
+
+Would you like this in a downloadable format (Word, Excel, or PDF)? Or should I help you turn this into a reusable template for your team?

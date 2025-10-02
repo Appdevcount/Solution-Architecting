@@ -1,0 +1,93 @@
+<mxfile host="Electron" modified="2024-02-26T14:53:29.371Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.16 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="EYOUmNitnziGlnJoWoaJ" version="22.1.16" type="device">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="1050" dy="1797" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="lim1SW6H7U4HnhmGgRTK-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="110" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lim1SW6H7U4HnhmGgRTK-31" value="&lt;b&gt;Publish Valid Manually Assigned case details &lt;br&gt;Producer - RequestRouting&amp;nbsp;&lt;br&gt;Consumer - UCX.LookupService&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="70" y="-1134" width="620" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="QHVLCNr028KJjd0Ayz7S-1" target="QHVLCNr028KJjd0Ayz7S-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-1" value="Is the Assignment&lt;br&gt;&amp;nbsp;a Permanent Request Assignment?" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="75" y="-1024" width="140" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-2" value="&lt;b&gt;Routing Reqest Assignment Event Handler&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="70" y="-1060" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="QHVLCNr028KJjd0Ayz7S-5" target="QHVLCNr028KJjd0Ayz7S-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="QHVLCNr028KJjd0Ayz7S-5" target="QHVLCNr028KJjd0Ayz7S-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-5" value="is the ReplayVersion &lt;b&gt;true?&lt;/b&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="250" y="-1009" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="QHVLCNr028KJjd0Ayz7S-7" target="QHVLCNr028KJjd0Ayz7S-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="QHVLCNr028KJjd0Ayz7S-7" target="QHVLCNr028KJjd0Ayz7S-10" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="-834" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="465" y="-774" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-7" value="is the &lt;br&gt;Event&amp;nbsp;&amp;nbsp;new? (Utilize AuditLog &lt;br&gt;Container)" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="400" y="-1011.5" width="130" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-8" value="Publish a new Event named &quot;UCX.PermanentAssignmentDetails&quot;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&amp;nbsp; with fields(RequestforServiceId,&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;RequestForServiceKey,&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;AssignedToId,&lt;br&gt;IsPermanentAssignment) to the&amp;nbsp;new Topic &quot;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;UCX.PermanentAssignmentDetails&quot;&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&quot;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="580" y="-1019" width="290" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-10" value="No Action" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="250" y="-804" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="QHVLCNr028KJjd0Ayz7S-1" target="QHVLCNr028KJjd0Ayz7S-10" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="145" y="-774" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-18" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="160" y="-864" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-19" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="310" y="-864" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-20" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="480" y="-864" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-21" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="200" y="-994" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-22" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="340" y="-994" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-23" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="520" y="-994" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="QHVLCNr028KJjd0Ayz7S-24" target="QHVLCNr028KJjd0Ayz7S-25" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-24" value="Create a new Observer &quot;PermanentAssignmentDetailsObserver&quot; in LookupService&amp;nbsp;&lt;br&gt;and consume the event &quot;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;UCX.&lt;/b&gt;PermanentAssignmentDetails&lt;br&gt;&quot;&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="65" y="-664" width="205" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-25" value="Handle the new Event by Getting the Lookup record from Container and Upsert with Assignment details with new fileds(isPermantentAssignment,&lt;br&gt;AssignedToId)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="360" y="-664" width="250" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="QHVLCNr028KJjd0Ayz7S-27" value="&lt;b&gt;Lookup Service New Observer - To hide the SKIP&amp;nbsp; option for the Permanently Assigned Request&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="60" y="-694" width="570" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

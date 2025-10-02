@@ -1,0 +1,53 @@
+apiVersion: v1  # API version for Service. 'v1' is the stable version for core resources like Service.
+kind: Service  # Specifies that this is a Service resource.
+metadata:
+  name: dotnet-app-service  # Name of the Service.
+  namespace: default  # Kubernetes namespace where the service is deployed.
+  labels:  # Labels to categorize and select the service.
+    app: dotnet-app
+    environment: production
+  annotations:  # Optional metadata for tools and documentation.
+    description: "Service for .NET application"
+
+spec:
+  type: ClusterIP  # Type of service. Options:
+                   # - ClusterIP (default): accessible only within the cluster.
+                   # - NodePort: exposes the service on each Node's IP at a static port.
+                   # - LoadBalancer: provisions an external load balancer (cloud providers).
+                   # - ExternalName: maps the service to a DNS name.
+
+  selector:  # Selects the pods this service routes traffic to.
+    app: dotnet-app
+
+  ports:
+    - name: http  # Name of the port (used for identification).
+      protocol: TCP  # Protocol used. Options: TCP, UDP, SCTP.
+      port: 80  # Port exposed by the service.
+      targetPort: 80  # Port on the pod that the traffic is forwarded to.
+      nodePort: 30080  # Required only for NodePort or LoadBalancer types. Range: 30000-32767.
+
+  sessionAffinity: None  # Controls session stickiness. Options:
+                         # - None (default): no session affinity.
+                         # - ClientIP: routes requests from the same client IP to the same pod.
+
+  externalTrafficPolicy: Cluster  # For LoadBalancer/NodePort. Options:
+                                  # - Cluster (default): traffic is distributed across all nodes.
+                                  # - Local: preserves the client source IP and routes only to local node endpoints.
+
+  ipFamilyPolicy: SingleStack  # IP family policy. Options:
+                               # - SingleStack (default): single IP family (IPv4 or IPv6).
+                               # - PreferDualStack: prefer dual-stack if available.
+                               # - RequireDualStack: require dual-stack.
+
+  ipFamilies:  # IP families used by the service.
+    - IPv4  # Options: IPv4, IPv6
+
+  loadBalancerIP: 192.168.1.100  # Optional static IP for LoadBalancer type (if supported by cloud provider).
+
+  loadBalancerSourceRanges:  # Restrict access to the service by client IP ranges.
+    - 0.0.0.0/0  # Allow all IPs (default). Use specific CIDRs for restriction.
+
+  publishNotReadyAddresses: false  # If true, service routes traffic to not-ready pods.
+
+  topologyKeys:  # Used for topology-aware routing (e.g., zone, region).
+    - kubernetes.io/hostname

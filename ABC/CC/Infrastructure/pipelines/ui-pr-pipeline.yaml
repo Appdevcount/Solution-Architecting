@@ -1,0 +1,58 @@
+trigger:
+  branches:
+    exclude:
+      - '*'
+
+pool:
+  vmImage: "windows-latest"
+
+
+steps:
+  # - checkout: self
+  #   displayName: "Checkout source"
+
+  # - task: qetza.replacetokens.replacetokens-task.replacetokens@3
+  #   displayName: "Replace environment variables"
+  #   inputs:
+  #     rootDirectory: "$(Build.SourcesDirectory)"
+  #     targetFiles: "**/*.env"
+  #     keepToken: true
+  #     tokenPrefix: "__"
+  #     tokenSuffix: "__"
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '18.x'
+    displayName: 'Install Node.js'
+  - task: Npm@1
+    displayName: 'Install Yarn'
+    inputs:
+      command: 'custom'
+      customCommand: 'install -g yarn'
+      workingDir: "$(System.DefaultWorkingDirectory)/UI"
+  - script: |
+      yarn --version
+    displayName: 'Verify Yarn Installation'
+  - script: |
+      yarn install
+    displayName: 'Install dependencies'
+  - script: |
+      yarn build
+    displayName: 'Build Project'
+  - script: |
+      yarn test --watchAll=false --coverage
+    displayName: 'Run Tests and Collect Coverage'
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/junit.xml'
+      failTaskOnFailedTests: true
+    displayName: 'Publish Test Results'
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: 'Cobertura'
+      summaryFileLocation: '$(Agent.TempDirectory)/**/*coverage.cobertura.xml'
+      reportDirectory: 'coverage'
+    displayName: 'Publish Code Coverage Results'

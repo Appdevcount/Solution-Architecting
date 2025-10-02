@@ -1,0 +1,106 @@
+Summary of Clean Architecture
+API Layer:
+
+Contains endpoints and request-response models.
+Performs basic input validations.
+Maps API DTOs to domain models and calls the application layer.
+
+Application Layer:
+
+Contains application services.
+Performs business validations defined in the domain layer.
+May use application DTOs and map them to domain models but avoided to avoid additional mapper for this transition
+Contains interfaces for data access and external service calls.
+
+Domain Layer:
+
+Contains core models and business rules.
+Defines enums and business constants.
+
+Data Access Layer:
+
+Implements data access interfaces (DAL layer).
+Maps DAL return types/models to application layer models.
+
+Service Layer :
+
+Implements external service interfaces (services project layer).
+Maps external service return types/models to application layer models.
+
+Diagram
+Here's a conceptual diagram of your clean architecture:
+
++-------------------+
+|     API Layer     |
+|-------------------|
+| - Endpoints       |
+| - API DTOs 	    |
+| - Input Validation|
+| - Mappers         |
+|-------------------|
+| Calls Application |
+| Layer             |
++-------------------+
+         |
+         v
++-------------------+
+| Application Layer |
+|-------------------|
+| - Application     |
+|   Services        |
+| - Business        |
+|   Validation 		|
+|   with Domain     |
+| - Application DTOs|
+| - Interfaces for  |
+|   Data Access and |
+|   External Calls  |
+|-------------------|
+| Calls Domain and  |
+| DAL    |
+| Layers            |
++-------------------+
+         |
+         v
++-------------------+
+|   Domain Layer    |
+|-------------------|
+| - Models        	|
+| - Business Rules  |
+| - Enums &         |
+|   Constants       |
++-------------------+
+         |
+         v
++-------------------+
+| DAL    |
+| Layer             |
+|-------------------|
+| - DAL Layer       |
+| - Data Models     |
+| - Mapping to      |
+|   Application     |
+|   Models          |
++-------------------+
+
+         |
+         v
++-------------------+
+| Service		   |
+| Layer             |
+|-------------------|
+| - Services Layer  |
+| - Ext.Api Models     |
+| - Mapping to      |
+|   Application     |
+|   Models          |
++-------------------+
+
+Workflow
+API Layer: Receives a request, validates input, maps API DTO to domain model, and calls the application layer.
+Application Layer: Performs business validation, maps DTOs if necessary, and uses interfaces to interact with the service and Data access layers.
+Domain Layer: Contains the core business logic and rules.
+Data acces Layer: Implements data access interfaces, maps data models to application models, and provides necessary data to the application layer.
+service Layer: Implements service interfaces for external api calls, maps external api models to application models, and provides necessary data to the application layer.
+
+This structure ensures that your application adheres to the principles of clean architecture, keeping your business logic decoupled from the infrastructure and presentation layers.

@@ -1,0 +1,66 @@
+#.AUTHOR
+#  Sujith Nair
+#   
+#.VERSION
+#  1.0   
+#   
+#.SYNOPSIS
+#  Continuous Integration(CI) Build Pipeline.
+#
+#.DESCRIPTION
+#  Triggers an automated Continuous Integration(CI) build on each checkin on
+#  Repo: CareCoordination
+#  - Branches
+#    -Releases/develop
+#    -Releases/release
+#    -main
+
+#  Define repository as resources for build steps template reference
+resources:
+  repositories:
+    - repository: DevOpsAutomation
+      type: git
+      name: ImageOneDomainApps/DevOpsAutomation
+      ref: main
+
+#  Define trigger on the source branch to trigger automated build
+trigger:
+- $(Build.SourceBranch)
+
+pool:
+  name: $(BuildAgentPool)
+  vmImage: $(BuildAgentVMImage)
+
+#  Define build number format
+name: $(date:yy.MM.dd).$(rev:r)
+
+#  Define jobs with buildagent pool and build steps 
+#  as template reference from DevOpsAutomation repo
+jobs:
+  - job: 'BuildJob'
+    displayName: Build
+    steps:
+    - template: templates/webappwebapi-dcore-winagnt-cisteps-templateV3.yml@DevOpsAutomation
+      parameters:
+        SonarQubeProjectKey: $(SonarQubeProjectKey)
+        SonarQubeProjectName: $(SonarQubeProjectName)
+        CheckmarxProjectName: $(CheckmarxProjectName)
+        CheckmarxComment: $(CheckmarxComment)
+        CheckmarxHighThreshold: $(CheckmarxHighThreshold)
+        CheckmarxMediumThreshold: $(CheckmarxMediumThreshold)
+        CheckmarxLowThreshold: $(CheckmarxLowThreshold)
+        DotNetVersion: $(DotNetVersion)
+        NuGetConfigPath: $(NuGetConfigPath)
+        BuildProject: $(BuildProject)
+        BuildProjRestoreArgs: $(BuildProjRestoreArgs)
+        BuildProjArgs: $(BuildProjArgs)
+        BuildProjPublishArgs: $(BuildProjPublishArgs)
+        UnitTestProject: $(UnitTestProject)
+        UnitTestProjArgs: $(UnitTestProjArgs)
+        UnitTestRunTitle: $(UnitTestRunTitle)
+        TestResultsFolder: $(TestResultsFolder)
+        UnitTestCodeCovFileSummary: $(UnitTestCodeCovFileSummary)
+        AppArtifactPath: $(AppArtifactPath)
+        DeployArtifactName: $(DeployArtifactName)
+        PublishWebProjects: $(PublishWebProjects)
+        ZipAfterPublish: $(ZipAfterPublish)

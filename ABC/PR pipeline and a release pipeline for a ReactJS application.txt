@@ -1,0 +1,213 @@
+Sure! Here are the steps to create a PR pipeline and a release pipeline for a ReactJS application using Azure DevOps, with deployment to an on-premise server.
+
+### PR Pipeline for ReactJS Application
+
+1. **Create a YAML file for the PR pipeline**:
+   Create a file named `pr-pipeline.yml` in your repository with the following content:
+
+   ```yaml
+   trigger:
+     branches:
+       exclude:
+         - '*'
+
+   pr:
+     branches:
+       include:
+         - '*'
+
+   pool:
+     vmImage: 'ubuntu-latest'
+
+   steps:
+     - task: NodeTool@0
+       inputs:
+         versionSpec: '18.x'
+       displayName: 'Install Node.js'
+
+     - script: |
+         yarn install
+       displayName: 'Install dependencies'
+
+     - script: |
+         yarn test --watchAll=false
+       displayName: 'Run tests'
+
+     - script: |
+         yarn build
+       displayName: 'Build project'
+   ```
+
+2. **Add the pipeline to Azure DevOps**:
+   - Go to Azure DevOps.
+   - Navigate to Pipelines > Pipelines.
+   - Click on "New Pipeline" and follow the steps to connect your repository.
+   - Select "Existing Azure Pipelines YAML file" and choose the `pr-pipeline.yml` file.
+
+3. **Set up build validation**:
+   - Go to Repos > Branches.
+   - Click on the three dots next to your main branch and select "Branch policies".
+   - Under "Build validation", add the PR pipeline you created.
+
+Release Pipeline for ReactJS Application to Deploy on On-Premise Server
+Create a YAML file for the release pipeline: Create a file named release-pipeline.yml in your repository with the following content:
+
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  publishDir: '$(Build.ArtifactStagingDirectory)/publish'
+
+stages:
+  - stage: Build
+    jobs:
+      - job: Build
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '18.x'
+            displayName: 'Install Node.js'
+
+          - task: Npm@1
+            displayName: 'Install Yarn'
+            inputs:
+              command: 'custom'
+              customCommand: 'install -g yarn'
+              workingDir: ${{ parameters.workingDir }}
+
+          - script: |
+              yarn --version
+            displayName: 'Verify Yarn Installation'
+
+          - script: |
+              yarn install
+            displayName: 'Install dependencies'
+
+          - script: |
+              yarn test --watchAll=false --coverage
+            displayName: 'Run Tests and Collect Coverage'
+
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: 'JUnit'
+              testResultsFiles: '**/junit.xml'
+              failTaskOnFailedTests: true
+            displayName: 'Publish Test Results'
+
+          - task: PublishCodeCoverageResults@1
+            inputs:
+              codeCoverageTool: 'Cobertura'
+              summaryFileLocation: '$(Agent.TempDirectory)/**/*coverage.cobertura.xml'
+              reportDirectory: 'coverage'
+            displayName: 'Publish Code Coverage Results'
+
+          - script: |
+              yarn build
+            displayName: 'Build Project'
+
+          - publish: $(publishDir)
+            artifact: drop
+
+  - stage: Deploy_DEV
+    condition: and(succeeded(), eq(variables['DeployToDEV'], 'true'))
+    jobs:
+      - deployment: Deploy
+        environment: 'DEV'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - script: |
+                    # Replace with your deployment script
+                    echo "Deploying to DEV environment"
+                  displayName: 'Deploy to DEV environment'
+
+  - stage: Deploy_INTG2
+    condition: and(succeeded(), eq(variables['DeployToINTG2'], 'true'))
+    jobs:
+      - deployment: Deploy
+        environment: 'INTG2'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - script: |
+                    # Replace with your deployment script
+                    echo "Deploying to INTG2 environment"
+                  displayName: 'Deploy to INTG2 environment'
+
+  - stage: Deploy_INTG
+    condition: and(succeeded(), eq(variables['DeployToINTG'], 'true'))
+    jobs:
+      - deployment: Deploy
+        environment: 'INTG'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - script: |
+                    # Replace with your deployment script
+                    echo "Deploying to INTG environment"
+                  displayName: 'Deploy to INTG environment'
+
+  - stage: Deploy_UAT
+    condition: and(succeeded(), eq(variables['DeployToUAT'], 'true'))
+    jobs:
+      - deployment: Deploy
+        environment: 'UAT'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - script: |
+                    # Replace with your deployment script
+                    echo "Deploying to UAT environment"
+                  displayName: 'Deploy to UAT environment'
+
+  - stage: Deploy_PROD
+    condition: and(succeeded(), eq(variables['DeployToPROD'], 'true'))
+    jobs:
+      - deployment: Deploy
+        environment: 'PROD'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - script: |
+                    # Replace with your deployment script
+                    echo "Deploying to PROD environment"
+                  displayName: 'Deploy to PROD environment'
+Add the pipeline to Azure DevOps:
+
+Go to Azure DevOps.
+Navigate to Pipelines > Pipelines.
+Click on "New Pipeline" and follow the steps to connect your repository.
+Select "Existing Azure Pipelines YAML file" and choose the release-pipeline.yml file.
+Set up deployment to on-premise server:
+
+Ensure your on-premise server is accessible and has the necessary Node.js runtime installed.
+Modify the deployment script in the release-pipeline.yml to copy the built files to your on-premise server using scp.
+Summary
+PR Pipeline: Validates pull requests by installing dependencies, running tests, and building the project.
+Release Pipeline: Builds the project, archives and publishes build artifacts, and deploys them to different environments based on selected checkboxes.

@@ -1,0 +1,264 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  publishDir: '$(Build.ArtifactStagingDirectory)/publish'
+  TESTVAR: ""
+
+stages:
+  - stage: Build
+    jobs:
+      - job: Build
+        steps:
+          - checkout: self
+            displayName: "Checkout source"
+          - task: qetza.replacetokens.replacetokens-task.replacetokens@3
+            displayName: "Replace environment variables"
+            inputs:
+              rootDirectory: "$(Build.SourcesDirectory)"
+              targetFiles: "**/*.env"
+              keepToken: true
+              tokenPrefix: "__"
+              tokenSuffix: "__"
+
+
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '18.x'
+            displayName: 'Install Node.js'
+          - task: Npm@1
+            displayName: 'Install Yarn'
+            inputs:
+              command: 'custom'
+              customCommand: 'install -g yarn'
+              workingDir: ${{ parameters.workingDir }}
+          - script: |
+              yarn --version
+            displayName: 'Verify Yarn Installation'
+          - script: |
+              REACT_APP_API_BASE_URL=${{ parameters.apimBaseUrl }} \
+              REACT_APP_INSTRUMENTATION_KEY=${{ parameters.appInsightsInstrumentationKey }} \
+              REACT_APP_TESTVAR=$() \
+              yarn install
+            displayName: 'Install dependencies'
+          - script: |
+              yarn build
+            displayName: 'Build Project'
+          - script: |
+              yarn test --watchAll=false --coverage
+            displayName: 'Run Tests and Collect Coverage'
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: 'JUnit'
+              testResultsFiles: '**/junit.xml'
+              failTaskOnFailedTests: true
+            displayName: 'Publish Test Results'
+          - task: PublishCodeCoverageResults@1
+            inputs:
+              codeCoverageTool: 'Cobertura'
+              summaryFileLocation: '$(Agent.TempDirectory)/**/*coverage.cobertura.xml'
+              reportDirectory: 'coverage'
+            displayName: 'Publish Code Coverage Results'
+          - task: ArchiveFiles@2 # CopyFiles@2 equivalent, decide whether archive is require reactjs onprem 
+            inputs:
+              rootFolderOrFile: 'build'
+              includeRootFolder: false
+              archiveType: 'zip'
+              archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+              replaceExistingArchive: true
+            displayName: 'Archive build artifacts'
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'drop'
+            displayName: 'Publish build artifacts'
+
+
+  - stage: Deploy_DEV
+    condition: and(succeeded(), eq(variables['DeployToDEV'], 'true'))
+    jobs:
+      - deployment: Deploy
+        environment: 'DEV'
+        dependsOn: Build
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - task: PowerShell@2
+                  displayName: 'Copy files to IIS server'
+                  inputs:
+                    targetType: 'inline'
+                    script:
+                       $sourcePath= "$(pipeline.Workspace)/drop"
+                       $destinationPath = "\\\\<IIS_SERVER_IP>\\inetpub\\wwwroot"
+                       $username = "<IIS_SERVER_USERNAME>"
+                       $password = "<IIS_SERVER_PASSWORD>"
+                       $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+                       $credential = New-Object System.Management.Automation.PSCredential($username, $securePassword)
+
+                       echo "copy files to IIS server"
+                       Copy-Item -Path $sourcePath\* -Destination $destinationPath -Recurse -Force -Credential $credential
+                - task: PowerShell@2
+                  displayName: 'Restart ISS'
+                  inputs:
+                    targetType: 'inline'
+                    script: |
+                      Invoke-Command -ComputerName <IIS_SERVER_IP> -ScriptBlock {
+                        iisreset
+                      }               
+
+  - stage: Deploy_INTG2
+    condition: and(succeeded(), eq(variables['DeployToINTG2'], 'true'))
+    jobs:
+      - deployment: Deploy
+        environment: 'INTG2'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - task: PowerShell@2
+                  displayName: 'Copy files to IIS server'
+                  inputs:
+                    targetType: 'inline'
+                    script:
+                       $sourcePath= "$(pipeline.Workspace)/drop"
+                       $destinationPath = "\\\\<IIS_SERVER_IP>\\inetpub\\wwwroot"
+                       $username = "<IIS_SERVER_USERNAME>"
+                       $password = "<IIS_SERVER_PASSWORD>"
+                       $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+                       $credential = New-Object System.Management.Automation.PSCredential($username, $securePassword)
+
+                       echo "copy files to IIS server"
+                       Copy-Item -Path $sourcePath\* -Destination $destinationPath -Recurse -Force -Credential $credential
+                - task: PowerShell@2
+                  displayName: 'Restart ISS'
+                  inputs:
+                    targetType: 'inline'
+                    script: |
+                      Invoke-Command -ComputerName <IIS_SERVER_IP> -ScriptBlock {
+                        iisreset
+                      }
+                   
+
+  - stage: Deploy_INTG
+    condition: and(succeeded(), eq(variables['DeployToINTG'], 'true'))
+    jobs:
+      - deployment: Deploy
+        environment: 'INTG'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - task: PowerShell@2
+                  displayName: 'Copy files to IIS server'
+                  inputs:
+                    targetType: 'inline'
+                    script:
+                       $sourcePath= "$(pipeline.Workspace)/drop"
+                       $destinationPath = "\\\\<IIS_SERVER_IP>\\inetpub\\wwwroot"
+                       $username = "<IIS_SERVER_USERNAME>"
+                       $password = "<IIS_SERVER_PASSWORD>"
+                       $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+                       $credential = New-Object System.Management.Automation.PSCredential($username, $securePassword)
+
+                       echo "copy files to IIS server"
+                       Copy-Item -Path $sourcePath\* -Destination $destinationPath -Recurse -Force -Credential $credential
+                - task: PowerShell@2
+                  displayName: 'Restart ISS'
+                  inputs:
+                    targetType: 'inline'
+                    script: |
+                      Invoke-Command -ComputerName <IIS_SERVER_IP> -ScriptBlock {
+                        iisreset
+                      }
+                   
+
+  - stage: Deploy_UAT
+    condition: and(succeeded(), eq(variables['DeployToUAT'], 'true'))
+    jobs:
+      - deployment: Deploy
+        environment: 'UAT'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - task: PowerShell@2
+                  displayName: 'Copy files to IIS server'
+                  inputs:
+                    targetType: 'inline'
+                    script:
+                       $sourcePath= "$(pipeline.Workspace)/drop"
+                       $destinationPath = "\\\\<IIS_SERVER_IP>\\inetpub\\wwwroot"
+                       $username = "<IIS_SERVER_USERNAME>"
+                       $password = "<IIS_SERVER_PASSWORD>"
+                       $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+                       $credential = New-Object System.Management.Automation.PSCredential($username, $securePassword)
+
+                       echo "copy files to IIS server"
+                       Copy-Item -Path $sourcePath\* -Destination $destinationPath -Recurse -Force -Credential $credential
+                - task: PowerShell@2
+                  displayName: 'Restart ISS'
+                  inputs:
+                    targetType: 'inline'
+                    script: |
+                      Invoke-Command -ComputerName <IIS_SERVER_IP> -ScriptBlock {
+                        iisreset
+                      }
+                   
+                    
+
+  - stage: Deploy_PROD
+    condition: and(succeeded(), eq(variables['DeployToPROD'], 'true'))
+    jobs:
+      - deployment: Deploy
+        environment: 'PROD'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - task: PowerShell@2
+                  displayName: 'Copy files to IIS server'
+                  inputs:
+                    targetType: 'inline'
+                    script:
+                       $sourcePath= "$(pipeline.Workspace)/drop"
+                       $destinationPath = "\\\\<IIS_SERVER_IP>\\inetpub\\wwwroot"
+                       $username = "<IIS_SERVER_USERNAME>"
+                       $password = "<IIS_SERVER_PASSWORD>"
+                       $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+                       $credential = New-Object System.Management.Automation.PSCredential($username, $securePassword)
+
+                       echo "copy files to IIS server"
+                       Copy-Item -Path $sourcePath\* -Destination $destinationPath -Recurse -Force -Credential $credential
+                - task: PowerShell@2
+                  displayName: 'Restart ISS'
+                  inputs:
+                    targetType: 'inline'
+                    script: |
+                      Invoke-Command -ComputerName <IIS_SERVER_IP> -ScriptBlock {
+                        iisreset
+                      }
+                   
+                    

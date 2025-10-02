@@ -1,0 +1,40 @@
+I apologize for the confusion. The `IConfiguration` interface treats all configuration values as strings, so it doesn't directly support arrays or complex objects. However, you can serialize your array to a string when setting up the mock, and then deserialize it back to an array when retrieving the value in your code under test.
+
+Here's an example of how you can do this:
+
+```csharp
+using Moq;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using Xunit;
+
+public class MyTestClass
+{
+    private readonly Mock<IConfiguration> _configMock;
+
+    public MyTestClass()
+    {
+        _configMock = new Mock<IConfiguration>();
+    }
+
+    [Fact]
+    public void TestMethod()
+    {
+        // Arrange
+        var queueNames = new string[]
+        {
+            "MD MENTOR REVIEW QUEUE",
+            "SPINECORE_CLINICAL_QUEUE"
+        };
+        _configMock.SetupGet(x => x[It.Is<string>(i => i == "sadad")]).Returns(JsonConvert.SerializeObject(queueNames));
+
+        // Act
+        var result = JsonConvert.DeserializeObject<string[]>(_configMock.Object["sadad"]);
+
+        // Assert
+        Assert.Equal(queueNames, result);
+    }
+}
+```
+
+In this code, we're using `JsonConvert.SerializeObject` to convert the array to a JSON string when setting up the mock, and `JsonConvert.DeserializeObject` to convert the JSON string back to an array when retrieving the value. This code uses the `Newtonsoft.Json` package for JSON serialization and deserialization, so you'll need to add this package to your project if it's not already included. You can add it via the NuGet package manager in Visual Studio or by using the `dotnet add package` command in the .NET CLI. Please adjust this code as necessary based on your specific use case. I hope this helps! Let me know if you have any other questions.

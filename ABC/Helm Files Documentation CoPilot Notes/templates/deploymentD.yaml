@@ -1,0 +1,107 @@
+apiVersion: apps/v1  # API version for the Deployment resource. 'apps/v1' is the stable version.
+kind: Deployment     # Specifies that this is a Deployment resource.
+metadata:
+  name: dotnet-app-deployment  # Name of the Deployment object.
+  namespace: default           # Kubernetes namespace (default or custom).
+  labels:                      # Labels help categorize and select resources.
+    app: dotnet-app
+    environment: production
+  annotations:                 # Optional metadata for tools and documentation.
+    description: "Deployment for .NET application"
+
+spec:
+  replicas: 3  # Number of desired pod replicas. Can be scaled up/down.
+  revisionHistoryLimit: 10  # Number of old ReplicaSets to retain for rollback.
+  progressDeadlineSeconds: 600  # Time in seconds to wait for rollout to complete before marking as failed.
+  selector:  # Selector to identify pods managed by this Deployment.
+    matchLabels:
+      app: dotnet-app
+  strategy:  # Deployment strategy.
+    type: RollingUpdate  # Options: RollingUpdate (default), Recreate.
+    rollingUpdate:  # Only applicable if type is RollingUpdate.
+      maxUnavailable: 1  # Max number of pods that can be unavailable during update.
+      maxSurge: 1        # Max number of pods that can be created above desired count.
+
+  template:  # Template for the pods created by the Deployment.
+    metadata:
+      labels:
+        app: dotnet-app
+        tier: backend
+      annotations:
+        prometheus.io/scrape: "true"  # Used by Prometheus to scrape metrics.
+        prometheus.io/port: "80"      # Port to scrape metrics from.
+    spec:
+      serviceAccountName: dotnet-service-account  # Service account for pod permissions.
+      restartPolicy: Always  # Options: Always (default), OnFailure, Never.
+      terminationGracePeriodSeconds: 30  # Time to wait before forcefully terminating the pod.
+      dnsPolicy: ClusterFirst  # DNS policy: ClusterFirst, Default, None.
+      hostNetwork: false  # Whether to use the host's network namespace.
+      nodeSelector:  # Schedule pods on specific nodes.
+        disktype: ssd
+      affinity:  # Advanced scheduling rules.
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: disktype
+                    operator: In
+                    values:
+                      - ssd
+        podAffinity: {}  # Pods that should be co-located.
+        podAntiAffinity: {}  # Pods that should not be co-located.
+      tolerations:  # Allow pods to be scheduled on tainted nodes.
+        - key: "key1"
+          operator: "Equal"
+          value: "value1"
+          effect: "NoSchedule"
+      securityContext:  # Security settings for the pod.
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
+      containers:
+        - name: dotnet-container  # Name of the container.
+          image: myregistry/dotnet-app:latest  # Docker image for the .NET app.
+          imagePullPolicy: IfNotPresent  # Options: Always, IfNotPresent, Never.
+          ports:
+            - containerPort: 80  # Port exposed by the container.
+              protocol: TCP  # Protocol: TCP or UDP.
+          env:  # Environment variables.
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+          envFrom:  # Load environment variables from ConfigMap or Secret.
+            - configMapRef:
+                name: dotnet-config
+            - secretRef:
+                name: dotnet-secret
+          resources:  # Resource requests and limits.
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          volumeMounts:  # Mount volumes into the container.
+            - name: config-volume
+              mountPath: /app/config
+          livenessProbe:  # Check if the container is alive.
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:  # Check if the container is ready to serve traffic.
+            httpGet:
+              path: /ready
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          lifecycle:  # Hooks for container lifecycle.
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "sleep 10"]L
+      volumes:  # Volumes to be mounted.
+        - name: config-volume
+          configMap:
+            name: dotnet-config
+      imagePullSecrets:  # Secrets for pulling private images.
+        - name: my-registry-secret

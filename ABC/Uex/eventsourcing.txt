@@ -1,0 +1,47 @@
+base
+===
+BaseState
+	Rehydraterequired
+	Apply(eventsourcemessage)
+EventSourceMessage
+	Payload
+	PayloadType
+	Unprocessable
+IDetermineRehydrateRequired
+	GetAsync(TState state, EventSourceMessage message, CancellationToken cancellationToken = default)
+		Task.FromResult(state.RehydrateRequired || message.Sent < state.LastMessageReceivedDate);
+IEventSourceMessageRepository
+	Task<IList<EventSourceMessage>> GetAllAsync(string stateId, CancellationToken cancellationToken = default);
+    Task<bool> TryAddAsync(EventSourceMessage message, CancellationToken cancellationToken = default);
+    Task UpdateUnprocessableAsync(bool unprocessable, Guid id, string stateId, CancellationToken cancellationToken = default);
+IEventSourceService
+	public EventSourceService(ILogger<EventSourceService<TState>> logger, IStateRepository<TState> stateRepository,IEventSourceMessageRepository<TState> eventSourceMessageRepository,IStateBuilder<TState> stateBuilder, IDetermineRehydrateRequired<TState>? determineRehydrateRequired = null, IPreApplyProcessor<TState>? preApplyProcessor = null,IPostApplyProcessor<TState>? postApplyProcessor = null, ISortEventSourceMessages? sortingService = null)
+    Task HandleAsync(EventSourceMessage message);
+    Task<TState> RehydrateAsync(IEnumerable<EventSourceMessage> eventSourceMessages, CancellationToken cancellationToken = default);
+IPostApplyProcessor<TState> where TState : BaseState
+    public Task ProcessAsync(TState state, EventSourceMessage message, CancellationToken cancellationToken = default);
+IPreApplyProcessor<TState> where TState : BaseState
+    public Task ProcessAsync(TState state, EventSourceMessage message, CancellationToken cancellationToken = default);	
+IPrepareEventSourceForRehydrate<TState> where TState : BaseState
+    Task RehydratePrepareAllAsync(string? settings = null);
+    Task RehydratePrepareAsync(StateIds ids);
+    Task RehydratePrepareAsync(DateTimeOffset startDate, DateTimeOffset endDate, string? settings = null);
+IRehydrateEventSource<TState> where TState : BaseState
+    Task RehydrateAllAsync(string? settings = null);
+    Task RehydrateAsync(string stateId);
+IStateRepository<TState> where TState : BaseState
+    Task<TState> UpsertAsync(TState state, CancellationToken cancellationToken = default);
+    Task<TState?> GetAsync(StateIds ids, CancellationToken cancellationToken = default);
+PrepareEventSourceForRehydrateService
+	RehydratePrepareAllAsync(string? settings = null)
+		Feed.GetNext will get certain number of records(consomos config) from container
+		The fetched records will then be added to queue
+		The queue will be utilized untill its empty on first GetNext. The data from queue will be processed in batch as per takeperthrottle value.
+		Delay will be added after each takeperthrottle value
+		The cycle goes on for next Feed.GetNext to prepare
+RehydrateEventSourceService
+	RehydrateAllAsync(string? settings = null)
+		same as prepareall and calls await _eventSourceService.RehydrateAsync(eventSourceMessages);
+		
+		
+		

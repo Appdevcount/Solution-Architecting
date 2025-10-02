@@ -1,0 +1,431 @@
+Absolutely! Here's the **fully restructured and non-tabular version** of the Unified Provider Experience (UPX) architect
+
+# 📘 Unified Provider Experience (UPX) – Architecture Planning & System Design
+
+---
+
+## 🔍 Problem Background
+
+**Background**  
+Within eviCore and across the Cigna group, multiple provider portals exist with overlapping business capabilities but inconsistent user experiences. External users are burdened with accessing multiple portals to retrieve authorization information, increasing their cognitive load and reducing efficiency.
+
+---
+
+## 🎯 Business Vision
+
+To create a connected care management ecosystem that empowers a best-in-class user experience, accelerates innovation, and improves consistency for external users.
+
+---
+
+## 🎯 Business Goals
+
+- Simplify the care management experience for external users to drive significantly improved outcomes through connected workflows and technologies.  
+- Improve the efficiency of prior authorization processes.  
+- Ensure compliance with regulatory requirements related to prior authorization and associated business processes.  
+- Become an industry leader in innovative care management solutions that deliver enterprise-wide value.  
+- Integrate seamlessly with Electronic Medical Records (EMRs).
+
+---
+
+## 🚀 Business Drivers
+
+- Build a connected ecosystem that provides a holistic view to external users, improving the prior authorization experience.  
+- Enhance efficiency for external users.  
+- Standardize the user experience across platforms.  
+- Reduce the cognitive load on users.  
+- Enable integration with various systems.  
+- Support growth opportunities through a SaaS model.
+
+---
+
+## 📜 Business Standards and Policies
+
+- Adherence to data retention policies.  
+- Enforcement of data access and view policies.
+
+---
+
+## 👥 Stakeholders Summary
+
+Stakeholders include external provider users, payor users, customer support teams, and provider engagement teams. Their concerns range from usability, data accuracy, and system responsiveness to compliance, maintainability, and integration with existing workflows.
+
+---
+
+## 🎭 Actors and Actions
+
+**External Provider Users** interact with the system to submit prior authorization requests, upload clinical documents, and check the status of their requests.
+
+**External Systems** such as EMRs exchange patient and provider data with UPX.
+
+**Payor Users** review and manage submitted cases.
+
+**Customer Support** is responsible for managing user accounts and access.
+
+**Provider Engagement Teams** assist external users with questions related to their prior authorization requests or the UPX system.
+
+---
+
+## 🧩 Capability Identification
+
+UPX supports a wide range of business capabilities including:
+
+- Intake of prior authorization requests.  
+- Capturing payor and health plan information.  
+- Determining whether a procedure has already been performed.  
+- Verifying member eligibility using demographic data.  
+- Delegating cases to other users.  
+- Verifying provider and facility eligibility and credentials.  
+- Collecting clinical information using ICD-10 codes and scripted questions.  
+- Managing and reviewing case statuses.  
+- Searching for cases with access restrictions.  
+- Viewing patient case history.  
+- Withdrawing or canceling cases.  
+- Modifying cases, including CPT code, provider, and facility changes.  
+- Creating new studies or cases based on updated information.
+
+---
+
+## 🧠 Solution Background
+
+### Architecture Principles
+
+**General Architecture**  
+The system will follow a modular design to allow components and services to be improved or replaced independently. It will use pattern-based architecture to promote reusability and ensure compliance with regulatory standards.
+
+**Automation**  
+Processes will be automated by default, with manual intervention only as an exception. Engineering automation will be embedded from the start using CI/CD pipelines to ensure reliability and faster delivery.
+
+**Data**  
+Data is treated as a valuable asset. Systems and users will have governed access to data, reducing the need for replication and enabling data-driven decision-making.
+
+**Integration**  
+The system will support both inter- and intra-system integration using APIs and Kafka-based messaging to enable seamless communication and data exchange.
+
+**Security**  
+Security will be embedded from the beginning, not as an afterthought. This ensures protection of sensitive business data and compliance with industry standards.
+
+**Extendability and Maintainability**  
+The system will be designed to support future functionality, regular maintenance, and configuration changes with minimal disruption to business operations.
+
+---
+
+## 🧮 Overall Architecture Analysis
+
+### Prioritized Architecture Characteristics
+
+**Defined Characteristics**  
+- Usability and responsiveness to ensure external users receive immediate feedback.  
+- Data integrity and consistency to prevent data loss or mismatch.  
+- High availability and resilience to ensure uninterrupted access for critical workflows.  
+- Modularity and portability to support reuse across UPX and UNX platforms.  
+- Interoperability to enable seamless integration with external systems.
+
+**Implicit Characteristics**  
+- Security as a foundational requirement.  
+- Agility, including maintainability, testability, deployability (zero downtime), extensibility, and adaptability to evolving business and technical needs.
+
+**Not Immediate but Considered**  
+- Scalability is moderately required, with the system expected to support 300–500 concurrent users.
+
+---
+
+## 📚 Use Cases
+
+The UPX system supports a wide range of use cases, including:
+
+- Displaying the UPX dashboard after login (with and without Auth0).  
+- Single sign-on (SSO) integration with Carriers Web and Portal 2.  
+- Displaying requests from Carriers Web, Portal 2, and partially saved cases.  
+- Future support for displaying PA requests and TruCare requests.  
+- Assigning worklists to peers and uploading documents.  
+- User registration, login, and multi-factor authentication.  
+- Migration of users to Auth0.  
+- Health plan and program selection.  
+- Case build workflows including patient, procedure, and diagnosis lookup; date of service; eligibility checks; provider and site selection; document upload; partial save; and case submission.  
+- Duplicate case detection and case search.  
+- Displaying submitted cases across CW, IO, UCX, and CDP.  
+- Case summary generation.
+
+---
+
+## 🏗️ Architecture Views
+
+**High-Level Architecture**  
+Provides an overview of the major components and their interactions.
+
+**Mid-Level Architecture**  
+Includes domain diagrams and flow diagrams to illustrate system behavior and data flow.
+
+**Domain Diagram**  
+Focuses on the Request Intake subdomain.
+
+**Flow Diagrams**  
+- Context Diagram  
+- Dashboard Data Flow Diagram  
+- Request Intake External Portal User Data Flow  
+- Auth0 Data Flow Diagram
+
+---
+
+## 🧱 Conceptual System Design
+
+**Context Diagram**  
+Illustrates how UPX interacts with external users, payor users, customer support, and provider engagement teams. It shows how each actor contributes to the system and what data or actions they interact with.
+
+**Container Diagram**  
+Depicts the major domains (containers) within the UPX system and their relationships with each other and external systems. It abstracts away implementation details to focus on the big picture.
+
+**Component Diagrams**  
+Highlight the most architecturally significant components, including:
+- Health Plan and Programs  
+- Patient  
+- Provider  
+- Diagnosis  
+- Procedures  
+- Request Process
+
+---
+
+
+## 📘 Architecture Decision Record (ADR) – Guideline Template
+
+This template outlines the standard structure for documenting architectural decisions. It ensures clarity, traceability, and consistency across all architecture-related decisions.
+
+---
+
+### 1. **Title**
+- A short, descriptive phrase summarizing the decision.
+- Example: *"Use Kafka for data exchange between UPX and TruCare"*
+
+---
+
+### 2. **Date**
+- The date the decision was finalized.
+
+---
+
+### 3. **Status**
+- Indicates the current state of the ADR:
+  - **New**: Draft state; no decision made yet.
+  - **Proposed**: Awaiting approval from governance or leadership.
+  - **Accepted**: Approved and ready for implementation.
+  - **Superseded**: Replaced by a newer ADR (must have been previously accepted).
+
+---
+
+### 4. **Context**
+- Describes the situation or problem that necessitated the decision.
+- Explains the background, constraints, and forces at play.
+
+---
+
+### 5. **Decision Driver**
+- Lists the functional and non-functional requirements influencing the decision.
+- Examples: scalability, performance, maintainability, compliance, etc.
+
+---
+
+### 6. **Considered Options**
+- Documents all alternative solutions evaluated.
+- Explains pros and cons of each to justify the final choice.
+
+---
+
+### 7. **Decision**
+- Clearly states the chosen solution.
+- Includes rationale and how it addresses the decision drivers.
+
+---
+
+### 8. **Consequences**
+- Describes the impact of the decision:
+  - **Positive**: Benefits and improvements.
+  - **Negative**: Trade-offs, limitations, or risks introduced.
+- Encourages thoughtful analysis of long-term effects.
+
+---
+
+### 9. **Compliance / Risk** *(Optional but Recommended)*
+- Outlines how the decision aligns with compliance standards.
+- Identifies risks and how they will be mitigated or governed.
+
+---
+
+### 10. **Notes** *(Optional)*
+- Metadata and change history:
+  - Original author
+  - Approval date
+  - Approved by
+  - Superseded date
+  - Last modified date
+  - Modified by
+  - Additional remarks
+
+---
+
+Would you like this guideline saved as a reusable **Markdown**, **Word**, or **PDF** template? I can generate that for you!
+
+
+Here is a **well-formatted Architecture Decision Record (ADR)** for the two decisions you provided, using the recommended structure and including all relevant metadata and sections:
+
+---
+
+## 🧾 Architecture Decision Record (ADR)
+
+---
+
+### 📌 ADR 001: Use a Hybrid of Service-Based, Microservices, and Event-Driven Architecture
+
+- **Date**: 2024-08-22  
+- **Status**: New  
+
+---
+
+#### **Title**  
+Use a hybrid of service-based architecture, microservices, and event-driven architecture style
+
+---
+
+#### **Context**  
+The UPX application has diverse components with varying architectural needs. Some components require modularity and independent deployment (microservices), others benefit from shared services (service-based), and some require asynchronous communication (event-driven). A single architectural style would not sufficiently address all functional and non-functional requirements.
+
+---
+
+#### **Decision Driver**  
+- Need for modularity and scalability  
+- Support for asynchronous workflows  
+- Maintainability and team autonomy  
+- Performance and cost optimization  
+
+---
+
+#### **Considered Options**  
+1. **Pure Microservices**  
+   - ✅ High modularity  
+   - ❌ High complexity and overhead  
+2. **Service-Based Architecture**  
+   - ✅ Easier to manage shared services  
+   - ❌ Less flexibility for scaling individual components  
+3. **Event-Driven Architecture**  
+   - ✅ Decoupled communication  
+   - ❌ Harder to debug and trace  
+4. **Hybrid Approach** *(Chosen)*  
+   - ✅ Combines strengths of all three styles  
+   - ❌ Requires careful governance and design discipline  
+
+---
+
+#### **Decision**  
+Adopt a hybrid architecture combining service-based, microservices, and event-driven styles. This allows UPX to evolve modularly, support asynchronous workflows, and optimize for performance and cost.
+
+---
+
+#### **Consequences**  
+
+**Positive**:
+- Improved modularity and scalability  
+- Better alignment with domain-driven design  
+- Flexibility in choosing the right style per component  
+
+**Negative**:
+- Increased architectural complexity  
+- Requires strong governance and documentation  
+
+**Risks**:
+- Poor implementation may lead to inconsistent patterns  
+- Higher learning curve for new developers  
+
+---
+
+#### **Compliance / Risk**  
+- Must follow internal architectural governance for service boundaries  
+- Logging, monitoring, and observability must be standardized  
+- Periodic reviews to ensure architectural consistency  
+
+---
+
+#### **Notes**  
+- **Original Author**: [Your Name or Team]  
+- **Approval Date**: TBD  
+- **Approved By**: TBD  
+- **Last Modified**: 2024-08-22  
+- **Modified By**: [Your Name]  
+
+---
+
+### 📌 ADR 002: Use Hybrid Split for UPX Frontend Architecture
+
+- **Date**: 2024-08-22  
+- **Status**: New  
+
+---
+
+#### **Title**  
+Use hybrid split for whole UPX project
+
+---
+
+#### **Context**  
+UPX includes multiple subdomains such as Dashboard, Case Creation, Appeals, and Authorization. A consistent and modular UI is required that supports reuse and team autonomy. A single split strategy (horizontal or vertical) does not meet all needs.
+
+---
+
+#### **Decision Driver**  
+- Need for modular and reusable UI components  
+- Support for domain-driven frontend development  
+- Flexibility in team ownership and deployment  
+
+---
+
+#### **Considered Options**  
+1. **Horizontal Split Only**  
+   - ✅ Good for shared UI components  
+   - ❌ Difficult to isolate domain logic  
+2. **Vertical Split Only**  
+   - ✅ Aligns with DDD  
+   - ❌ Harder to reuse components  
+3. **Hybrid Split** *(Chosen)*  
+   - ✅ Combines strengths of both approaches  
+   - ❌ Requires coordination and routing complexity  
+
+---
+
+#### **Decision**  
+Adopt a hybrid split strategy:
+- **Vertical split** for domain-specific areas like Authentication and Dashboard  
+- **Horizontal split** for shared subdomains like Case Creation and Appeals  
+
+---
+
+#### **Consequences**  
+
+**Positive**:
+- Enables reuse of micro-frontends  
+- Teams can own and deploy independently  
+- Aligns with both UI and domain needs  
+
+**Negative**:
+- Increased complexity in routing and communication  
+- Requires strong observability and debugging tools  
+
+**Risks**:
+- Without proper tooling, debugging becomes difficult  
+- Coordination overhead between teams  
+
+---
+
+#### **Compliance / Risk**  
+- Must follow micro-frontend governance and routing standards  
+- Observability and error tracking must be implemented across all splits  
+- Shared libraries must be versioned and documented  
+
+---
+
+#### **Notes**  
+- **Original Author**: [Your Name or Team]  
+- **Approval Date**: TBD  
+- **Approved By**: TBD  
+- **Last Modified**: 2024-08-22  
+- **Modified By**: [Your Name]  
+
+---

@@ -1,0 +1,60 @@
+#.AUTHOR
+#  Sujith Nair
+#   
+#.VERSION
+#  1.0   
+#   
+#.SYNOPSIS
+#  Continuous Integration(CI) Build Pipeline.
+#
+#.DESCRIPTION
+#  Triggers an automated Continuous Integration(CI) build on each checkin on
+#  Repo: ImageOne.UI
+#  - Branches
+#    -Releases/develop
+#    -Releases/release
+#    -main
+
+#  Define repository as resources for build steps template reference
+resources:
+  repositories:
+    - repository: pipeline-templates
+      type: git
+      name: ImageOneDomainApps/pipeline-templates
+      ref: main
+
+#  Define trigger on the source branch to trigger automated build
+trigger:
+- $(Build.SourceBranch)
+
+pool:
+  name: $(BuildAgentPool)
+  vmImage: $(BuildAgentVMImage)
+
+#  Define build number format
+name: $(date:yy.M.d).$(rev:r)
+
+#  Define jobs with buildagent pool and build steps 
+#  as template reference from pipeline-templates repo
+jobs:
+  - job: 'BuildJob'
+    displayName: Build
+    steps:
+    - template: src/azure-pipelines/templates/webapp-react-winagnt-cisteps-template.yml@pipeline-templates
+      parameters:
+        SonarQubeProjectKey: $(SonarQubeProjectKey)
+        SonarQubeProjectName: $(SonarQubeProjectName)
+        CheckmarxProjectName: $(CheckmarxProjectName)
+        CheckmarxComment: $(CheckmarxComment)
+        CheckmarxHighThreshold: $(CheckmarxHighThreshold)
+        CheckmarxMediumThreshold: $(CheckmarxMediumThreshold)
+        CheckmarxLowThreshold: $(CheckmarxLowThreshold)
+        NodeJsVersion: $(NodeJsVersion)
+        PkgJsonWorkDir: $(PkgJsonWorkDir)
+        SourcesDir: $(SourcesDir)
+        UnitTestRunTitle: $(UnitTestRunTitle)
+        TestResultsFolder: $(TestResultsFolder)
+        TestResultsFile: $(TestResultsFile)
+        UnitTestCodeCovFileSummary: $(UnitTestCodeCovFileSummary)
+        AppArtifactPath: $(AppArtifactPath)
+        DeployArtifactName: $(DeployArtifactName)

@@ -1,0 +1,24 @@
+PS C:\AZRepo\UCX.UI_2> npm install -g vsts-npm-auth
+
+added 1 package, and audited 3 packages in 2s
+
+found 0 vulnerabilities
+
+PS C:\AZRepo\UCX.UI_2> vsts-npm-auth -config .npmrc -TargetConfig C:\AZRepo\UCX.UI_2\.npmrc
+
+vsts-npm-auth v0.42.1.0
+-----------------------
+Getting new credentials for source:https://pkgs.dev.azure.com/eviCoreDev/_packaging/evicore-npm/npm/registry/, scope:vso.packaging_write vso.drop_write
+PS C:\AZRepo\UCX.UI_2>
+
+
+=========================================PROJ .NPMRC FILE=================================
+
+registry=https://pkgs.dev.azure.com/eviCoreDev/_packaging/evicore-npm/npm/registry/
+
+always-auth=true
+//pkgs.dev.azure.com/eviCoreDev/_packaging/evicore-npm/npm/registry/:username=VssSessionToken
+; This is an unencrypted authentication token. Treat it like a password. DO NOT share this value with anyone, including Microsoft support.
+//pkgs.dev.azure.com/eviCoreDev/_packaging/evicore-npm/npm/registry/:_password=cm1qZ2dtb2R1am1yMnl1dmxta3B1NHZkeXZyM3M2aHZ4cWRwZmJ2NmRqYmI3YXVxM3F2cQ==
+; The npm client won't use username and _password without an email set, but the service doesn't use the email value. The following is an arbitrarily made-up address.
+//pkgs.dev.azure.com/eviCoreDev/_packaging/evicore-npm/npm/registry/:email=not-used@example.com

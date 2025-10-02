@@ -1,0 +1,194 @@
+
+## 📂 Sections for Detailed Breakdown**
+
+Would you like me to now expand on any of the following?
+
+1. **Logging Optimization Plan (Gravity.Common & UCX Services)**
+2. **Auto-Scaling Strategy & Metrics**
+3. **Architecture Re-Design & Microservice Consolidation**
+4. **Cosmos DB Decommissioning Strategy**
+
+Let me know how you'd like to proceed!
+
+
+Here’s a **comprehensive expansion** of all the key sections from the **UCX Azure Cost Optimization** initiative, with detailed insights, rationale, and next steps where applicable:
+
+---
+
+## 1️⃣ **Logging Optimization Plan**
+
+### 🔍 Problem:
+- Excessive logging in production environments, especially debug-level logs.
+- High memory usage traced to logging operations in `evicore.gravity.common` and UCX services.
+
+### 🔧 Actions Taken / Planned:
+- **Centralized Logging Control**: Log levels are now being configured via environment settings instead of hardcoded defaults.
+- **Gravity.Common Update**: Refactored to reduce memory-intensive logging calls.
+- **Log Analytics Retention**: Reduced from 90 to 30/60 days across environments.
+- **AppTraces Table**: Moved to Basic tier in DEV to reduce ingestion/storage costs.
+
+### 💡 Impact:
+- Estimated savings: **$30,000/month**
+- Reduced memory footprint and improved performance.
+- Lower ingestion volume into Log Analytics.
+
+---
+
+## 2️⃣ **Auto-Scaling Strategy & Metrics**
+
+### 🎯 Objective:
+Enable dynamic scaling of Azure App Services to optimize resource usage and cost.
+
+### ✅ Implemented:
+- **RequestRouting Service**: Auto-scaling based on CPU metrics.
+  - Terraform script reference
+
+### 📊 Metrics Considered:
+- **CPU**: `CpuPercentage`
+- **Memory**: `MemoryWorkingSet`
+- **HTTP**: `HttpQueueLength`, `Requests`
+- **Disk**: `DiskQueueLength`
+- **Network**: `BytesReceived`, `BytesSent`
+
+### ❓ Pending:
+- Decision on whether to enable auto-scaling for both **Observer** and **API** roles.
+- Expansion to other services like `ActivityLogService`, `LookupService`, etc.
+
+### 💡 Impact:
+- Prevents over-provisioning.
+- Improves performance under load.
+- Reduces idle-time costs.
+
+---
+
+## 3️⃣ **Architecture Re-Design & Microservice Consolidation**
+
+### 🧱 Key Issues Addressed:
+- Long deployment cycles.
+- Data duplication and inconsistency.
+- High Azure costs due to event sourcing and microservice sprawl.
+
+### 🏗️ Architectural Changes:
+- **Removed Event Sourcing**: Eliminated unnecessary Kafka topics and message containers.
+- **ERSS as Source of Truth**: Kafka now used only for live data (30-day retention).
+- **Service Consolidation**:
+  - Merged services into fewer, more cohesive units:
+    - `Ucx.CaseDetails`
+    - `RequestRouting`
+    - `Ucx.ActivityLog`
+    - `MemberHistory`
+    - `NotesService`
+    - `UCX UI`
+- **Schema Consolidation**: Unified data models across services.
+- **Micro UI Consolidation**: Reduced front-end complexity.
+
+### 💡 Impact:
+- Reduced Azure resource usage.
+- Faster deployments and simplified maintenance.
+- Lower Kafka and storage costs.
+
+---
+
+## 4️⃣ **Cosmos DB Decommissioning Strategy**
+
+### 🔍 Problem:
+- Cosmos DB provisioned with **millions of RU/s**, but actual usage <10%.
+- High monthly costs with minimal utilization.
+
+### 🛠️ Actions Taken:
+- **RU/s Reduction**:
+  - `ehcuspd1cdbucxdeterminationservice`: 3M → optimized
+  - `ehcuspd1cdbucxdiagnosisservice`: 1.28M → optimized
+  - `ehcuspd1cdbucxqualifier`: 1.28M → optimized
+  - `eheu2in1cdbucxqualifier`: 1.17M → optimized
+- **Dynamic Scaling**: Plan to implement programmatic RU/s scaling based on demand.
+- **Blob Storage Migration**: Member data moved to blob storage.
+- **Decommission Plan**: Strategy in place to retire `MemberPolicy` container.
+
+### 💡 Impact:
+- Estimated savings: **$34,300/month**
+- Reduced over-provisioning and waste.
+- Improved cost-performance alignment.
+
+---
+
+## 5️⃣ **Ownership Tracker & Timeline View**
+
+| **Optimization Area** | **Owner** | **Status** | **Target Completion** |
+|------------------------|-----------|------------|------------------------|
+| App Service Cleanup | Polaris / Vanguard | ✅ Completed | Oct 2023 |
+| Log Analytics Optimization | Wizards / Skywalkers | ✅ Completed | Nov 2023 |
+| Cosmos DB Optimization | Vanguard | ✅ Completed | Oct 2023 |
+| Logging Optimization | Vanguard | 🔄 In Progress | Q3 2025 |
+| Auto-Scaling | TBD | ⏳ Partial | Q3–Q4 2025 |
+| Architecture Redesign | Pravin Phulari | ✅ In Progress | Q4 2025 |
+
+---
+
+
+Let me know your preferred format, and I can generate it for you!
+
+
+
+## 💡 **UCX Azure Cost Optimization – Executive Summary**
+
+### 💰 **Total Projected Monthly Savings: ~$103,000+**
+*(Based on September 2023 baseline cost of $146,665)*
+
+---
+
+### ✅ **1. App Service Plan Cleanup**
+
+| **App Name** | **Resource Group** | **Resource Name** | **Action Taken** | **Monthly Savings** | **Owner** |
+|--------------|--------------------|--------------------|------------------|----------------------|-----------|
+| UCX ACL MDM (DEV) | `dv1_rsg_ucx-linux` | `eheu2dv1-asp-ucxaclmdm` | Deleted on 10/19 | $202 | Polaris |
+| UCX Member History (DEV) | `dv1_rsg_ucx-linux` | `eheu2dv1-asp-ucxmemberhistory` | Deleted on 10/19 | $577 | Polaris |
+| UCX Metrics (DEV) | `dv1_rsg_ucx-linux` | `eheu2dv1-asp-ucxmetrics` | Deleted on 10/19 | $0 | Polaris |
+| UCX Misc (DEV) | `dv1_rsg_ucx` | `ASP-dv1rsgucx-8d2d` | Deleted on 10/19 | $115 | Polaris |
+| UCX Misc (DEV) | `dv1_rsg_ucx` | `ASP-dv1rsgucx-915b` | Deleted on 10/19 | $189 | Polaris |
+| UCX ACL MDM (INTG) | `in1_rsg_ucx-linux` | `eheu2in1-asp-ucxaclmdm` | Deleted on 10/19 | $0 | Polaris |
+| UCX Clinical Review (PROD) | `pd1_rsg_cus_ucx-linux` | `ehcuspd1aspucxclinicalreview` | Deleted on 10/25 | $201 | Vanguard |
+| UCX Misc (PROD) | `pd1_rsg_ucx` | `ehcuspd1aspucx` | Deleted on 10/31 | $201 | Vanguard |
+
+**🔹 Total App Service Savings: ~$1,485/month**
+
+---
+
+### 📉 **2. Log Analytics Optimization**
+
+| **Workspace** | **Resource Group** | **Optimization** | **Monthly Savings** | **Owner** |
+|---------------|--------------------|------------------|----------------------|-----------|
+| `ehcuspd1-law-ucx` | `pd1_rsg_cus_ucx-linux` | Retention & storage plan changes | $60,000 | Wizards |
+| `eheu2prod-law-requestrouting` | `prod_rsg_eu2_requestrouting` | Same as above | $5,000 | Skywalkers |
+| `eheu2dev-law-requestrouting` | `dev_rsg_eu2_requestrouting` | Same as above | $170 | Skywalkers |
+| `eheu2in1-law-ucx` | `in1_rsg_ucx-linux` | Same as above | $2,000 | Wizards |
+| `eheu2dv1-law-ucx` | `dv1_rsg_ucx-linux` | Same as above | $500 | Wizards |
+| `eheu2test-law-requestrouting` | `test_rsg_eu2_requestrouting` | Same as above | $400 | Skywalkers |
+
+**🔹 Total Log Analytics Savings: ~$68,070/month**
+
+---
+
+### 🌐 **3. Cosmos DB Optimization**
+
+| **Resource Name** | **Resource Group** | **RU/s Before** | **Utilization** | **Monthly Savings** | **Owner** |
+|-------------------|--------------------|------------------|------------------|----------------------|-----------|
+| `ehcuspd1cdbucxdeterminationservice` | `pd1_rsg_cus_ucx` | 3,008,000 | <10% | $13,300 | Vanguard |
+| `ehcuspd1cdbucxdiagnosisservice` | `pd1_rsg_cus_ucx` | 1,280,000 | <1% | $7,000 | Vanguard |
+| `ehcuspd1cdbucxqualifier` | `pd1_rsg_cus_ucx` | 1,280,000 | <1% | $7,000 | Vanguard |
+| `eheu2in1cdbucxqualifier` | `in1_rsg_eu2_ucx` | 1,168,000 | <1% | $7,000 | Vanguard |
+
+**🔹 Total Cosmos DB Savings: ~$34,300/month**
+
+---
+
+## 📌 **Total Quantified Monthly Savings: ~$103,855**
+
+| **Category** | **Monthly Savings** |
+|--------------|----------------------|
+| App Services | ~$1,485 |
+| Log Analytics | ~$68,070 |
+| Cosmos DB | ~$34,300 |
+| **Total** | **~$103,855** |
+
+---

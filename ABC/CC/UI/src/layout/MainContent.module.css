@@ -1,0 +1,6 @@
+.rightPane {
+    width: 85%;
+    height: 100vh;
+    overflow: auto; /* Ensures scroll if content exceeds height */
+    /* padding: 20px; */
+}

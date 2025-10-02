@@ -1,0 +1,10 @@
+nginx folder/nginx.conf in react
+ecosyste.config.js/npx serve build -s
+docker file for react 
+azurepipeline.yml/repo,var,env-stages-tasks
+azurepipeline-pr.yml
+.npmrc
+sonar-project.js 
+sonar-project.properties
+.gitignore
+.env

@@ -1,0 +1,37 @@
+Windows PowerShell
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+PS C:\AZRepo> nvm list
+  * 18.18.2 (Currently using 64-bit executable)
+node v16.20.2 (64-bit) is not installed.
+Downloading node.js version 16.20.2 (64-bit)...
+Extracting node and npm...
+Complete
+npm v8.19.4 installed successfully.
+
+
+Installation complete. If you want to use this version, type
+
+nvm use 16.20.2
+PS C:\AZRepo> nvm list
+
+  * 18.18.2 (Currently using 64-bit executable)
+    16.20.2
+PS C:\AZRepo> nvm use 16.20.2
+Now using node v16.20.2 (64-bit)
+PS C:\AZRepo> node -v
+v16.20.2
+PS C:\AZRepo> npm -v
+8.19.4
+PS C:\AZRepo> nvm use latest
+21.0.0
+node v21.0.0 (64-bit) is not installed.
+PS C:\AZRepo> nvm use 18.18.2
+Now using node v18.18.2 (64-bit)
+PS C:\AZRepo> node -v
+v18.18.2
+PS C:\AZRepo> npm -v
+9.8.1
+PS C:\AZRepo> nvm use 16.20.2
+Now using node v16.20.2 (64-bit)
+PS C:\AZRepo>

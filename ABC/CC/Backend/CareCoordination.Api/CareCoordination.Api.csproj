@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CareCoordination.Application\CareCoordination.Application.csproj" />
+    <ProjectReference Include="..\CareCoordination.DAL\CareCoordination.DAL.csproj" />
+    <ProjectReference Include="..\CareCoordination.Services\CareCoordination.Services.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+	<SonarQubeSetting Include="sonar.coverage.exclusions">
+		<Value>**/Program.cs</Value>
+	</SonarQubeSetting>
+  </ItemGroup>
+</Project>

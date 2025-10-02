@@ -1,0 +1,30 @@
+export interface UpdateSiteDetailsRequestModel {
+    careCoordinationEpisodeId: string | null;
+    careCoordinationEpisodeDate: string;
+    oAOSiteID: string | null;
+    nonParSiteID: string | null;
+    oldSiteID: string | null;
+    siteName: string | null;
+    siteAddr1: string | null;
+    siteAddr2: string | null;
+    siteCity: string | null;
+    siteState: string | null;
+    siteZip: string | null;
+    sitePhone: string | null;
+    siteFax: string | null;
+    siteSpec1: string | null;
+    siteSpec2: string | null;
+    siteSpecDesc1: string | null;
+    siteSpecDesc2: string | null;
+    siteAlternateID: string | null;
+    siteNYMIPar: string | null;
+    steeragePosition: number;
+    nPI: string | null;
+    siteIdent: number;
+    selectionMethodID: number;
+    email: string | null;
+    pUSRDF: string | null;
+    siteIPA: string | null;
+    siteEntity: string | null;
+    siteType: string | null;
+}

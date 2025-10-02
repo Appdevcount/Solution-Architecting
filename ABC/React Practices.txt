@@ -1,0 +1,324 @@
+To avoid losing the authentication state on reload and retain the state, you can use `redux-persist` to persist the Redux state in local storage. This way, the state will be rehydrated when the app reloads.
+
+Here's how you can integrate `redux-persist` into your existing setup:
+
+1. **Install `redux-persist`**:
+   ```bash
+   npm install redux-persist
+   ```
+
+2. **Configure `redux-persist` in your store**:
+   Update your store configuration to use `redux-persist`:
+
+   ```typescript
+   import { configureStore } from '@reduxjs/toolkit';
+   import { persistStore, persistReducer } from 'redux-persist';
+   import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+   import authReducer from '../reducers/authSlice';
+   import requestReducer from '../reducers/requestSlice';
+
+   const persistConfig = {
+     key: 'root',
+     storage,
+     whitelist: ['auth'], // only persist the auth reducer
+   };
+
+   const persistedReducer = persistReducer(persistConfig, authReducer);
+
+   export const store = configureStore({
+     reducer: {
+       auth: persistedReducer,
+       request: requestReducer,
+     },
+   });
+
+   export const persistor = persistStore(store);
+
+   export type RootState = ReturnType<typeof store.getState>;
+   export type AppDispatch = typeof store.dispatch;
+   ```
+
+3. **Wrap your app with `PersistGate`**:
+   Update your app entry point to use `PersistGate` to delay the rendering of your app until the persisted state has been retrieved and saved to Redux:
+
+   ```typescript
+   import React from 'react';
+   import ReactDOM from 'react-dom';
+   import { Provider } from 'react-redux';
+   import { PersistGate } from 'redux-persist/integration/react';
+   import App from './App';
+   import { store, persistor } from './state/store/store';
+
+   ReactDOM.render(
+     <Provider store={store}>
+       <PersistGate loading={null} persistor={persistor}>
+         <App />
+       </PersistGate>
+     </Provider>,
+     document.getElementById('root')
+   );
+   ```
+
+4. **Update your `AuthProvider` to handle persisted state**:
+   Ensure that your `AuthProvider` correctly initializes the state from the persisted storage:
+
+   ```typescript
+   import {
+     createContext,
+     PropsWithChildren,
+     useContext,
+     useEffect,
+   } from 'react';
+   import { User } from '../types/User';
+   import { clearToken, extractTokenDetails, getTokenFromUrl, validateToken } from '../utils/authtokenhandler';
+   import { useDispatch, useSelector } from 'react-redux';
+   import { RootState } from '../state/store/store';
+   import { clearAuthState, setAuthState } from '../state/reducers/authSlice';
+   import { useNavigate } from 'react-router-dom';
+
+   type AuthContextType = {
+     handleLogin: () => Promise<boolean>;
+     handleLogout: () => Promise<void>;
+   };
+
+   export const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+   export default function AuthProvider({ children }: PropsWithChildren) {
+     const dispatch = useDispatch();
+     const navigate = useNavigate();
+     const authToken = useSelector((state: RootState) => state.auth.token);
+     const currentUser = useSelector((state: RootState) => state.auth.user);
+
+     useEffect(() => {
+       const initialize = async () => {
+         console.log('Initializing authentication...');
+         const token = getTokenFromUrl();
+         console.log('Token from URL:', token);
+         if (token) {
+           const isValid = await validateToken(token);
+           console.log('Token validation result:', isValid);
+           if (!isValid) {
+             dispatch(clearAuthState());
+             navigate('/login', { state: { message: 'Invalid token' } });
+           } else {
+             const user: User = extractTokenDetails(token);
+             console.log('Extracted user details:', user);
+             dispatch(setAuthState({ token, user }));
+           }
+         }
+       };
+
+       initialize();
+     }, [dispatch, navigate]);
+
+     const handleLogin = async (): Promise<boolean> => {
+       try {
+         console.log('Handling login...');
+         const token = getTokenFromUrl();
+         console.log('Token from URL:', token);
+         if (token) {
+           const isValid = await validateToken(token);
+           console.log('Token validation result:', isValid);
+           if (!isValid) {
+             dispatch(clearAuthState());
+             return false;
+           }
+           const user: User = extractTokenDetails(token);
+           console.log('Extracted user details:', user);
+           dispatch(setAuthState({ token, user }));
+           return true;
+         } else {
+           console.error('No token found in URL');
+           return false;
+         }
+       } catch (error) {
+         console.error('handleLogin error:', error);
+         dispatch(clearAuthState());
+         return false;
+       }
+     };
+
+     const handleLogout = async (): Promise<void> => {
+       console.log('Handling logout...');
+       dispatch(clearAuthState());
+       navigate('/login', { state: { message: 'Logged out' } });
+     };
+
+     return (
+       <AuthContext.Provider
+         value={{
+           handleLogin,
+           handleLogout,
+         }}
+       >
+         {children}
+       </AuthContext.Provider>
+     );
+   }
+
+   export function useAuth() {
+     const context = useContext(AuthContext);
+
+     if (context === undefined) {
+       throw new Error('useAuth must be used inside of a AuthProvider');
+     }
+
+     return context;
+   }
+   ```
+
+By following these steps, you can ensure that the authentication state is persisted across page reloads, and the user remains authenticated.
+
+Let me know if you need any further adjustments or have additional questions!
+
+
+Sure! Let's integrate `PersistGate`, add error boundaries, and implement lazy loading for better performance.
+
+### 1. Integrating `PersistGate`
+
+To integrate `PersistGate`, you need to wrap your app with it in the entry point. This ensures that the persisted state is rehydrated before rendering the app.
+
+Here's how you can do it:
+
+```typescript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './state/store/store';
+import App from './App';
+
+ReactDOM.render(
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
+  </Provider>,
+  document.getElementById('root')
+);
+```
+
+### 2. Adding Error Boundaries
+
+Error boundaries help catch JavaScript errors anywhere in your component tree and display a fallback UI instead of crashing the whole app.
+
+Here's an example of an error boundary component:
+
+```typescript
+import React, { Component, ReactNode } from 'react';
+
+type ErrorBoundaryProps = {
+  children: ReactNode;
+};
+
+type ErrorBoundaryState = {
+  hasError: boolean;
+};
+
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('ErrorBoundary caught an error', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong.</h1>;
+    }
+
+    return this.props.children;
+  }
+}
+
+export default ErrorBoundary;
+```
+
+Wrap your `App` component with the `ErrorBoundary`:
+
+```typescript
+import ErrorBoundary from './components/ErrorBoundary';
+
+const App: React.FC = () => {
+  return (
+    <React.StrictMode>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ErrorBoundary>
+            <Router>
+              <AuthProvider>
+                <div className={styles.container}>
+                  <Sidebar />
+                  <MainContent />
+                </div>
+              </AuthProvider>
+            </Router>
+          </ErrorBoundary>
+        </PersistGate>
+      </Provider>
+    </React.StrictMode>
+  );
+};
+
+export default App;
+```
+
+### 3. Implementing Lazy Loading
+
+Lazy loading helps improve performance by loading components only when they are needed. You can use `React.lazy` and `Suspense` for this.
+
+Here's how you can lazy load the `Sidebar` and `MainContent` components:
+
+```typescript
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import styles from './App.module.css';
+import { Provider } from 'react-redux';
+import { store, persistor } from './state/store/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import AuthProvider from './context/AuthProvider';
+import ErrorBoundary from './components/ErrorBoundary';
+
+const Sidebar = lazy(() => import('./layout/Sidebar'));
+const MainContent = lazy(() => import('./layout/MainContent'));
+
+const App: React.FC = () => {
+  return (
+    <React.StrictMode>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ErrorBoundary>
+            <Router>
+              <AuthProvider>
+                <div className={styles.container}>
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <Sidebar />
+                    <MainContent />
+                  </Suspense>
+                </div>
+              </AuthProvider>
+            </Router>
+          </ErrorBoundary>
+        </PersistGate>
+      </Provider>
+    </React.StrictMode>
+  );
+};
+
+export default App;
+```
+
+### Summary
+
+- **PersistGate**: Ensures the persisted state is rehydrated before rendering the app.
+- **Error Boundaries**: Catches JavaScript errors and displays a fallback UI.
+- **Lazy Loading**: Improves performance by loading components only when needed.
+
+Feel free to ask if you have any more questions or need further assistance!

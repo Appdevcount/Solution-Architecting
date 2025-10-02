@@ -1,0 +1,19 @@
+
+        public static IEnumerable<object[]> GetJsonData()
+        {
+            var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EventData", "CaseAssignmentChangedIOne.json");
+            string json = File.ReadAllText(filePath);
+            yield return new object[] { json };
+            filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EventData", "CaseAssignmentChangedIOne_ValidEpisodeId.json");
+            json = File.ReadAllText(filePath);
+            yield return new object[] { json };
+            filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EventData", "CaseAssignmentChangedIOne_InValidEpisodeId.json");
+            json = File.ReadAllText(filePath);
+            yield return new object[] { json };
+            filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EventData", "CaseAssignmentChangedIOne_ValidQueueOwner.json");
+            json = File.ReadAllText(filePath);
+            yield return new object[] { json };
+            filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EventData", "CaseAssignmentChangedIOne_InValidQueueowner.json");
+            json = File.ReadAllText(filePath);
+            yield return new object[] { json };
+        }

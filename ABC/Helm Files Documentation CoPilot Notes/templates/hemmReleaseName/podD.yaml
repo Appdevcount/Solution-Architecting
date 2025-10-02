@@ -1,0 +1,110 @@
+apiVersion: v1  # API version for Pod resources. 'v1' is the stable version.
+kind: Pod  # Specifies that this is a Pod resource.
+
+metadata:
+  name: dotnet-app-pod  # Unique name for the Pod.
+  namespace: default  # Namespace in which the Pod is deployed. Default is 'default'.
+  labels:  # Key-value pairs to organize and select the Pod.
+    app: dotnet-app
+    environment: production
+  annotations:  # Optional metadata used by tools and libraries.
+    description: "Standalone Pod for .NET application"
+
+spec:
+  restartPolicy: Always  # Restart policy for containers. Options:
+                         # - Always: Always restart the container (default for Deployments).
+                         # - OnFailure: Restart only if the container exits with a non-zero status.
+                         # - Never: Never restart the container.
+  serviceAccountName: dotnet-service-account  # Service account for RBAC permissions.
+  hostNetwork: false  # If true, the Pod uses the node's network namespace.
+  dnsPolicy: ClusterFirst  # DNS policy. Options:
+                           # - ClusterFirst (default): Use cluster DNS first.
+                           # - Default: Use node's default DNS.
+                           # - None: No DNS configuration.
+                           # - ClusterFirstWithHostNet: Use cluster DNS with host networking.
+  terminationGracePeriodSeconds: 30  # Time to wait before forcefully terminating the Pod.
+  nodeSelector:  # Schedule Pod on nodes with matching labels.
+    disktype: ssd
+
+  affinity:  # Advanced scheduling rules.
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: disktype
+                operator: In
+                values:
+                  - ssd
+    podAffinity: {}  # Pods that should be co-located.
+    podAntiAffinity: {}  # Pods that should not be co-located.
+
+  tolerations:  # Allow scheduling on tainted nodes.
+    - key: "key1"
+      operator: "Equal"
+      value: "value1"
+      effect: "NoSchedule"
+
+  securityContext:  # Security settings for the entire Pod.
+    runAsUser: 1000  # Run all containers as this user ID.
+    runAsGroup: 3000  # Group ID for the containers.
+    fsGroup: 2000  # Group ID for mounted volumes.
+
+  containers:
+    - name: dotnet-container  # Name of the container.
+      image: myregistry/dotnet-app:latest  # Docker image for the .NET app.
+      imagePullPolicy: IfNotPresent  # Options:
+                                     # - Always: Always pull the image.
+                                     # - IfNotPresent: Pull only if not already present.
+                                     # - Never: Never pull the image.
+      ports:
+        - containerPort: 80  # Port exposed by the container.
+          protocol: TCP  # Protocol used. Options: TCP, UDP, SCTP.
+
+      env:  # Environment variables.
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production
+
+      envFrom:  # Load environment variables from ConfigMap or Secret.
+        - configMapRef:
+            name: dotnet-config
+        - secretRef:
+            name: dotnet-secret
+
+      resources:  # Resource requests and limits.
+        requests:
+          memory: "256Mi"
+          cpu: "250m"
+        limits:
+          memory: "512Mi"
+          cpu: "500m"
+
+      volumeMounts:  # Mount volumes into the container.
+        - name: config-volume
+          mountPath: /app/config
+
+      livenessProbe:  # Check if the container is alive.
+        httpGet:
+          path: /health
+          port: 80
+        initialDelaySeconds: 10
+        periodSeconds: 10
+
+      readinessProbe:  # Check if the container is ready to serve traffic.
+        httpGet:
+          path: /ready
+          port: 80
+        initialDelaySeconds: 5
+        periodSeconds: 5
+
+      lifecycle:  # Hooks for container lifecycle.
+        preStop:
+          exec:
+            command: ["/bin/sh", "-c", "sleep 10"]
+
+  volumes:  # Volumes to be mounted into the Pod.
+    - name: config-volume
+      configMap:
+        name: dotnet-config
+
+  imagePullSecrets:  # Secrets for pulling private images.
+    - name: my-registry-secret
